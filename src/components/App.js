@@ -162,8 +162,23 @@ function App() {
     })
   }
 
-  function handleDeleteFood() {
-    
+  function handleDeleteFood(e) {
+    fetch(`http://localhost:9292/foods/${e.target.className}`, {
+      method: "DELETE",
+    })
+    .then(r => r.json())
+    .then(deletedFood => handleDeleteFoodFromState(deletedFood))
+  }
+
+  function handleDeleteFoodFromState(deletedFood) {
+    const updatedFoods = foods.filter(food => {
+      if (food.id === deletedFood.id) {
+        return null
+      } else {
+        return food
+      }
+    })
+    setFoods(updatedFoods)
   }
 
   return (
@@ -193,7 +208,12 @@ function App() {
                     <div key={food.id}>
                       <h3>
                         {food.name}
-                        <button type="submit" onClick={handleDeleteFood} >Delete Food</button>
+                        <button
+                          className={food.id}
+                          onClick={handleDeleteFood}
+                        >
+                          Delete Food
+                        </button>
                         <button
                           className={food.id}
                           onClick={handleDisplayEditFoodForm}
