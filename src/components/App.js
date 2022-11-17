@@ -141,7 +141,6 @@ function App() {
 
   function handleEditFoodFormSubmit(e) {
     e.preventDefault()
-    // console.log(e.target.id)
     fetch(`http://localhost:9292/foods/${e.target.id}`, {
       method: "PATCH",
       headers: {
@@ -204,6 +203,7 @@ function App() {
               onClick={handleClickOnDate}
             >
               {day.date}
+              {/* <button id={day.id} onClick={} >Edit Date</button> */}
             </h2>
             <div id={day.date} style={{ display: "none" }}>
               {foods.map((food) => {
@@ -212,19 +212,19 @@ function App() {
                     <div key={food.id}>
                       <h3>
                         {food.name}
-                        <button
-                          className={food.id}
-                          onClick={handleDeleteFood}
-                        >
-                          Delete Food
-                        </button>
-                        <button
-                          className={food.id}
-                          onClick={handleDisplayEditFoodForm}
-                        >
-                          Edit Food
-                        </button>
                       </h3>
+                      <button
+                        className={food.id}
+                        onClick={handleDeleteFood}
+                      >
+                        Delete Food
+                      </button>
+                      <button
+                        className={food.id}
+                        onClick={handleDisplayEditFoodForm}
+                      >
+                        Edit Food
+                      </button>
                       <form
                         id={food.id}
                         className={food.day_id}
@@ -272,11 +272,11 @@ function App() {
                       <div>
                         Calories: {food.calories}
                         <br></br>
-                        Fat: {food.fat}
+                        Fat: {food.fat} grams
                         <br></br>
-                        Fiber {food.fiber}
+                        Fiber: {food.fiber} grams
                         <br></br>
-                        Points: {Math.round((food.calories/50)+(food.fat/12)-(food.fiber/12))}
+                        WW Points: {Math.round(food.calories/50+(food.fat-food.fiber)/12)}
                       </div>
                     </div>
                   )
