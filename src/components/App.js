@@ -66,8 +66,10 @@ function App() {
 
     if (x.style.display === "none") {
       x.style.display = "block"
+      e.target.innerText = "Hide Form"
     } else {
       x.style.display = "none"
+      e.target.innerText = "Add Food"
     }
   }
 
@@ -112,8 +114,10 @@ function App() {
 
     if (x.style.display === "none") {
       x.style.display = "block"
+      e.target.innerText = "Hide Form"
     } else {
       x.style.display = "none"
+      e.target.innerText = "Edit Food"
     }
   }
 
