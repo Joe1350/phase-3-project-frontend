@@ -61,36 +61,36 @@ function App() {
     setDateFormData("")
   }
 
-  function handleUpdateDateInState(updatedDate) {
-    const updatedDays = days.map(day => {
-      if (day.id === updatedDate.id) {
-        return updatedDate
-      } else {
-        return day
-      }
-    })
-    setDays(updatedDays)
-  }
+  // function handleUpdateDateInState(updatedDate) {
+  //   const updatedDays = days.map(day => {
+  //     if (day.id === updatedDate.id) {
+  //       return updatedDate
+  //     } else {
+  //       return day
+  //     }
+  //   })
+  //   setDays(updatedDays)
+  // }
 
-  function handleEditDateClick(e) {
-    console.log(e.target.parentElement.nextSibling.id)
-    days.filter(day => {
-      if (day.date === e.target.parentElement.nextSibling.id) {
-        fetch(`http://localhost:9292/days/${day.id}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            date: dateFormData,
-          }),
-        })
-        .then(r => r.json())
-        .then(updatedDate => handleUpdateDateInState(updatedDate))
-        setDateFormData("")
-      }
-    })
-  }
+  // function handleEditDateClick(e) {
+  //   console.log(e.target.parentElement.nextSibling.id)
+  //   days.filter(day => {
+  //     if (day.date === e.target.parentElement.nextSibling.id) {
+  //       fetch(`http://localhost:9292/days/${day.id}`, {
+  //         method: "PATCH",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({
+  //           date: dateFormData,
+  //         }),
+  //       })
+  //       .then(r => r.json())
+  //       .then(updatedDate => handleUpdateDateInState(updatedDate))
+  //       setDateFormData("")
+  //     }
+  //   })
+  // }
 
   function handleDisplayAddFoodFormClick(e) {
     const x = e.target.previousSibling
@@ -234,7 +234,7 @@ function App() {
               onClick={handleClickOnDate}
             >
               {day.date}
-              <button onClick={handleEditDateClick} >Edit Date</button>
+              {/* <button onClick={handleEditDateClick} >Edit Date</button> */}
             </h2>
             <div id={day.date} style={{ display: "none" }}>
               {foods.map((food) => {
