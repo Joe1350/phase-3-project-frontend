@@ -3,11 +3,16 @@ import React, { useEffect, useState } from "react";
 function App() {
   const [days, setDays] = useState([])
   const [foods, setFoods] = useState([])
-  // const [daysWithFoods, setDaysWithFoods] = useState([])
   const [dateFormData, setDateFormData] = useState("")
   const [addFoodFormData, setAddFoodFormData] = useState({
     name: "",
     category: "",
+    fat: "",
+    fiber: "",
+  })
+  const [editFoodFormData, setEditFoodFormData] = useState({
+    name: "",
+    calories: "",
     fat: "",
     fiber: "",
   })
@@ -23,12 +28,6 @@ function App() {
     .then(r => r.json())
     .then(setFoods)
   }, [])
-
-  // useEffect(() => {
-  //   fetch("http://localhost:9292/days_with_foods")
-  //   .then(r => r.json())
-  //   .then(setDaysWithFoods)
-  // }, [])
 
   function handleClickOnDate(e) {
     const date = e.target.innerHTML
@@ -99,6 +98,13 @@ function App() {
     })
     .then(r => r.json())
     .then(setFoods([...foods, newFood]))
+    e.target.style.display = "none"
+    setAddFoodFormData({
+      name: "",
+      category: "",
+      fat: "",
+      fiber: "",
+    })
   }
 
   function handleDisplayEditFoodForm(e) {
@@ -109,6 +115,55 @@ function App() {
     } else {
       x.style.display = "none"
     }
+  }
+
+  function handleEditFoodFormChange(e) {
+    setEditFoodFormData({
+      ...editFoodFormData,
+      [e.target.name]: e.target.value,
+    })
+  }
+
+  function handleUpdateFood(updatedFood) {
+    const updatedFoods = foods.map(food => {
+      if (food.id === updatedFood.id) {
+        return updatedFood
+      } else {
+        return food
+      }
+    })
+    setFoods(updatedFoods)
+  }
+
+  function handleEditFoodFormSubmit(e) {
+    e.preventDefault()
+    // console.log(e.target.id)
+    fetch(`http://localhost:9292/foods/${e.target.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: editFoodFormData.name,
+        calories: editFoodFormData.calories,
+        fat: editFoodFormData.fat,
+        fiber: editFoodFormData.fiber,
+        day_id: e.target.className,
+      }),
+    })
+    .then(r => r.json())
+    .then(updateFood => handleUpdateFood(updateFood))
+    e.target.style.display = "none"
+    setEditFoodFormData({
+      name: "",
+      category: "",
+      fat: "",
+      fiber: "",
+    })
+  }
+
+  function handleDeleteFood() {
+    
   }
 
   return (
@@ -138,9 +193,9 @@ function App() {
                     <div key={food.id}>
                       <h3>
                         {food.name}
-                        <button type="submit">Delete Food</button>
+                        <button type="submit" onClick={handleDeleteFood} >Delete Food</button>
                         <button
-                          class={food.id}
+                          className={food.id}
                           onClick={handleDisplayEditFoodForm}
                         >
                           Edit Food
@@ -148,14 +203,16 @@ function App() {
                       </h3>
                       <form
                         id={food.id}
+                        className={food.day_id}
                         style={{ display: "none" }}
+                        onSubmit={handleEditFoodFormSubmit}
                       >
                         <label>
                           Name:
                           <input
                             type="text"
                             name="name"
-                            onChange={handleAddFoodFormChange}
+                            onChange={handleEditFoodFormChange}
                           />
                         </label>
                         <br></br>
@@ -164,7 +221,7 @@ function App() {
                           <input
                             type="number"
                             name="calories"
-                            onChange={handleAddFoodFormChange}
+                            onChange={handleEditFoodFormChange}
                           />
                         </label>
                         <br></br>
@@ -173,7 +230,7 @@ function App() {
                           <input
                             type="number"
                             name="fat"
-                            onChange={handleAddFoodFormChange}
+                            onChange={handleEditFoodFormChange}
                           />
                         </label>
                         <br></br>
@@ -182,7 +239,7 @@ function App() {
                           <input
                             type="number"
                             name="fiber"
-                            onChange={handleAddFoodFormChange}
+                            onChange={handleEditFoodFormChange}
                           />
                         </label>
                         <br></br>
