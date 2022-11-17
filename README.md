@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# Calorie Tracker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Calorie Tracker is a web application to track daily calories, fat, and fiber, and tells you how many weight watcher points each food item is. This project uses the original weight watchers point system:
 
-## Available Scripts
+(calories / 50) + (fat / 12) - (fiber / 12) = original WW points
 
-In the project directory, you can run:
+## Instalation
 
-### `npm start`
+In order to view this project fork and clone the repository.
+Run <npm install> to download dependencies
+Run <npm start> to start the server at port 3000
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Usage
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The Calorie Tracker has a field to add a new day by Typing in the day and clicking add.
+The new day is added to your list of days.
+When you click on a day you can add food items.
+When a food item is added it displays it under that day and calculates the WW points.
+You are able to edit and delete food items
+Currently, days cannot be edited or deleted and must be entered correctly.
 
-### `npm test`
+## support
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+There is currently no support.
 
-### `npm run build`
+## Roadmap
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Create buttons and form to edit and delete days.
+Add stylings to change sizing and spacing, and make it look pretty.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Contributing
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+I am not currently looking for contributors
 
-### `npm run eject`
+## Acknowledgement
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+This project uses the original weight watchers point system to caluclate points.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## License
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+[MIT](https://choosealicense.com/licenses/mit/)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Project Status
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Currently on hold.
