@@ -13,7 +13,6 @@ function DateListing({
     handleEditDateSubmit,
     displayEditDateForm,
     handleDeleteFoodSubmit,
-    handleEditFoodFormSubmit,
     handleSetFoods,
 }) {
     function handleClickOnDate(e) {
@@ -47,10 +46,10 @@ function DateListing({
                 <FoodList
                     day={day}
                     daysWithFoods={daysWithFoods}
+                    handleSetFoods={handleSetFoods}
                     editFoodFormData={editFoodFormData}
                     setEditFoodFormData={setEditFoodFormData}
                     handleDeleteFoodSubmit={handleDeleteFoodSubmit}
-                    handleEditFoodFormSubmit={handleEditFoodFormSubmit}
                 />
                 <AddFoodForm
                     day={day}

@@ -46,45 +46,6 @@ function App() {
     setDaysWithFoods(updatedDays)
   }
 
-  function handleEditFoodFormSubmit(e) {
-    e.preventDefault()
-
-    const dayWithFoodToEdit = daysWithFoods.find(
-      day => day.foods.find(food => food.id == e.target.id)
-    )
-    const updatedFood = {
-      name: editFoodFormData.name,
-      calories: editFoodFormData.calories,
-      fat: editFoodFormData.fat,
-      fiber: editFoodFormData.fiber,
-      day_id: dayWithFoodToEdit.id
-    }
-    const updatedFoods = dayWithFoodToEdit.foods.map(food => (
-      food.id == e.target.id ? updatedFood : food
-    ))
-    const updatedDay = {...dayWithFoodToEdit, foods: updatedFoods}
-    const updatedDays = daysWithFoods.map(day => (
-      day.id == dayWithFoodToEdit.id ? updatedDay : day
-    ))
-
-    fetch(`http://localhost:9292/foods/${e.target.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedFood),
-    })
-    .then(r => r.json())
-    .then(setDaysWithFoods(updatedDays))
-    e.target.style.display = "none"
-    setEditFoodFormData({
-      name: "",
-      category: "",
-      fat: "",
-      fiber: "",
-    })
-  }
-
   function handleDeleteFoodSubmit(e) {
     console.log(e)
     const dayWithFoodToDelete = daysWithFoods.find(
@@ -172,7 +133,6 @@ function App() {
         handleEditDateFormChange={handleEditDateFormChange}
         handleEditDateSubmit={handleEditDateSubmit}
         handleDeleteFoodSubmit={handleDeleteFoodSubmit}
-        handleEditFoodFormSubmit={handleEditFoodFormSubmit}
         handleSetFoods={handleSetFoods}
         editFoodFormData={editFoodFormData}
         setEditFoodFormData={setEditFoodFormData}

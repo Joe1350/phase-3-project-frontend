@@ -4,10 +4,10 @@ import FoodListing from "./FoodListing";
 function FoodList({
     day,
     daysWithFoods,
+    handleSetFoods,
     editFoodFormData,
     setEditFoodFormData,
-    handleDeleteFoodSubmit,
-    handleEditFoodFormSubmit
+    handleDeleteFoodSubmit
 }) {
     
 
@@ -17,10 +17,10 @@ function FoodList({
                 <FoodListing
                     food={food}
                     daysWithFoods={daysWithFoods}
+                    handleSetFoods={handleSetFoods}
                     editFoodFormData={editFoodFormData}
                     setEditFoodFormData={setEditFoodFormData}
                     handleDeleteFoodSubmit={handleDeleteFoodSubmit}
-                    handleEditFoodFormSubmit={handleEditFoodFormSubmit}
                 />
             ))}
         </div>

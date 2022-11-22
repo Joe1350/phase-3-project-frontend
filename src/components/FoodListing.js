@@ -5,9 +5,9 @@ import FoodListingInfo from "./FoodListingInfo";
 function FoodListing({
     food,
     daysWithFoods,
+    handleSetFoods,
     editFoodFormData,
     setEditFoodFormData,
-    handleEditFoodFormSubmit,
     handleDeleteFoodSubmit
 }) {
     
@@ -20,9 +20,9 @@ function FoodListing({
             <EditFoodForm
                 food={food}
                 daysWithFoods={daysWithFoods}
+                handleSetFoods={handleSetFoods}
                 editFoodFormData={editFoodFormData}
                 setEditFoodFormData={setEditFoodFormData}
-                handleEditFoodFormSubmit={handleEditFoodFormSubmit}
                 handleDeleteFoodSubmit={handleDeleteFoodSubmit}
             />
             <FoodListingInfo food={food} />
