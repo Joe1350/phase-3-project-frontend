@@ -3,13 +3,39 @@ import EditAndDeleteDateButtons from "./EditAndDeleteDateButtons";
 
 function EditDateForm({
     day,
+    daysWithFoods,
+    handleSetFoods,
     editDateFormData,
     setEditDateFormData,
-    handleEditDateSubmit,
     handleDeleteDateClick
 }) {
     function handleEditDateFormChange(e) {
         setEditDateFormData(e.target.value)
+    }
+
+    function handleEditDateSubmit(e) {
+        e.preventDefault()
+    
+        const dayId = e.target.form.id.split("_")[0]
+        const updatedDays = daysWithFoods.map(day => (
+            day.id == dayId ? {...day, date: editDateFormData} : day
+        ))
+        const updatedDay = editDateFormData
+    
+        fetch(`http://localhost:9292/days/${dayId}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body:JSON.stringify({
+                date: updatedDay,
+            }),
+        })
+            .then(r => r.json())
+            .then(() => handleSetFoods(updatedDays))
+        setEditDateFormData("")
+        e.target.form.style.display = "none"
+        e.target.parentElement.parentElement.firstChild.firstChild.innerText = "Edit Date"
     }
 
     return(

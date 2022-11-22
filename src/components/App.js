@@ -46,32 +46,6 @@ function App() {
     setDaysWithFoods(updatedDays)
   }
 
-  function handleEditDateSubmit(e) {
-    e.preventDefault()
-    console.log(e)
-
-    const dayId = e.target.form.id.split("_")[0]
-    const updatedDays = daysWithFoods.map(day => (
-      day.id == dayId ? {...day, date: editDateFormData} : day
-    ))
-    const updatedDay = editDateFormData
-
-    fetch(`http://localhost:9292/days/${dayId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body:JSON.stringify({
-        date: updatedDay,
-      }),
-    })
-    .then(r => r.json())
-    .then(setDaysWithFoods(updatedDays))
-    setEditDateFormData("")
-    e.target.form.style.display = "none"
-    e.target.parentElement.parentElement.firstChild.firstChild.innerText = "Edit Date"
-  }
-
   function handleDeleteDateClick(e) {
     const dayId = e.target.className.split("_")[1]
     const updatedDays = daysWithFoods.filter(day => (
@@ -83,7 +57,7 @@ function App() {
       method: "DELETE",
     })
     .then(r => r.json())
-    .then(setDaysWithFoods(updatedDays))
+    .then(() => handleSetFoods(updatedDays))
   }
 
   return (
@@ -93,7 +67,6 @@ function App() {
       <DateList
         daysWithFoods={daysWithFoods}
         handleDeleteDateClick={handleDeleteDateClick}
-        handleEditDateSubmit={handleEditDateSubmit}
         handleSetFoods={handleSetFoods}
         editFoodFormData={editFoodFormData}
         setEditFoodFormData={setEditFoodFormData}
