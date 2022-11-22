@@ -46,37 +46,6 @@ function App() {
     setDaysWithFoods(updatedDays)
   }
 
-  function displayEditFoodForm(e) {
-    const x = document.getElementById(e.target.className)
-    console.log(x)
-    const y = x.children
-    console.log(y)
-    const dayWithFoodToDisplay = daysWithFoods.find(day => (
-      day.foods.find(food => (
-        food.id == e.target.className
-      ))
-    ))
-    console.log(dayWithFoodToDisplay)
-    const foodToDisplay = dayWithFoodToDisplay.foods.find(food => (
-      food.id == e.target.className
-    ))
-    console.log(foodToDisplay.name)
-    console.log(document.getElementsByClassName("name"))
-
-    if (x.style.display === "none") {
-      x.style.display = "block"
-      e.target.innerText = "Hide Form"
-      y[0].children[0].value = `${foodToDisplay.name}`
-      y[2].children[0].value = foodToDisplay.calories
-      y[4].children[0].value = foodToDisplay.fat
-      y[6].children[0].value = foodToDisplay.fiber
-      setEditFoodFormData(foodToDisplay)
-    } else {
-      x.style.display = "none"
-      e.target.innerText = "Edit Food"
-    }
-  }
-
   function handleEditFoodFormChange(e) {
     setEditFoodFormData({
       ...editFoodFormData,
@@ -209,12 +178,12 @@ function App() {
         handleDeleteDateClick={handleDeleteDateClick}
         handleEditDateFormChange={handleEditDateFormChange}
         handleEditDateSubmit={handleEditDateSubmit}
-        displayEditFoodForm={displayEditFoodForm}
         handleDeleteFoodSubmit={handleDeleteFoodSubmit}
         handleEditFoodFormSubmit={handleEditFoodFormSubmit}
         handleEditFoodFormChange={handleEditFoodFormChange}
         handleSetFoods={handleSetFoods}
         editDateFormData={editDateFormData}
+        setEditFoodFormData={setEditFoodFormData}
       />
     </div>
   );

@@ -6,12 +6,12 @@ import FoodList from "./FoodList";
 function DateListing({
     day,
     editFoodFormData,
+    setEditFoodFormData,
     daysWithFoods,
-    displayEditDateForm,
     handleDeleteDateClick,
     handleEditDateFormChange,
     handleEditDateSubmit,
-    displayEditFoodForm,
+    displayEditDateForm,
     handleDeleteFoodSubmit,
     handleEditFoodFormSubmit,
     handleEditFoodFormChange,
@@ -27,6 +27,8 @@ function DateListing({
             x.style.display = "none"
         }
     }
+
+    
 
     return(
         <div id="date-listing" key={day.id}>
@@ -45,8 +47,9 @@ function DateListing({
               />
               <FoodList
                 day={day}
+                daysWithFoods={daysWithFoods}
                 editFoodFormData={editFoodFormData}
-                displayEditFoodForm={displayEditFoodForm}
+                setEditFoodFormData={setEditFoodFormData}
                 handleDeleteFoodSubmit={handleDeleteFoodSubmit}
                 handleEditFoodFormSubmit={handleEditFoodFormSubmit}
                 handleEditFoodFormChange={handleEditFoodFormChange}

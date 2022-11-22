@@ -7,12 +7,12 @@ function DateList({
     handleDeleteDateClick,
     handleEditDateFormChange,
     handleEditDateSubmit,
-    displayEditFoodForm,
     handleDeleteFoodSubmit,
     handleEditFoodFormSubmit,
     handleEditFoodFormChange,
     handleSetFoods,
-    editDateFormData
+    editDateFormData,
+    setEditFoodFormData
 }) {
     
 
@@ -26,12 +26,12 @@ function DateList({
                 handleDeleteDateClick={handleDeleteDateClick}
                 handleEditDateFormChange={handleEditDateFormChange}
                 handleEditDateSubmit={handleEditDateSubmit}
-                displayEditFoodForm={displayEditFoodForm}
                 handleDeleteFoodSubmit={handleDeleteFoodSubmit}
                 handleEditFoodFormSubmit={handleEditFoodFormSubmit}
                 handleEditFoodFormChange={handleEditFoodFormChange}
                 handleSetFoods={handleSetFoods}
                 editDateFormData={editDateFormData}
+                setEditFoodFormData={setEditFoodFormData}
             />
         ))}
       </div>

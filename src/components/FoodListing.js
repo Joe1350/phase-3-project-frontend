@@ -4,11 +4,14 @@ import FoodListingInfo from "./FoodListingInfo";
 
 function FoodListing({
     food,
+    daysWithFoods,
+    setEditFoodFormData,
     handleEditFoodFormSubmit,
     handleEditFoodFormChange,
-    displayEditFoodForm,
     handleDeleteFoodSubmit
 }) {
+    
+
     return (
         <div key={food.id}>
                       <h3>
@@ -16,9 +19,10 @@ function FoodListing({
                       </h3>
                       <EditFoodForm
                         food={food}
+                        daysWithFoods={daysWithFoods}
+                        setEditFoodFormData={setEditFoodFormData}
                         handleEditFoodFormSubmit={handleEditFoodFormSubmit}
                         handleEditFoodFormChange={handleEditFoodFormChange}
-                        displayEditFoodForm={displayEditFoodForm}
                         handleDeleteFoodSubmit={handleDeleteFoodSubmit}
                       />
                       <FoodListingInfo food={food} />

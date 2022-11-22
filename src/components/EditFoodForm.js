@@ -3,16 +3,20 @@ import EditAndDeleteFoodButtons from "./EditAndDeleteFoodButtons";
 
 function EditFoodForm({
     food,
+    daysWithFoods,
+    setEditFoodFormData,
     handleEditFoodFormSubmit,
     handleEditFoodFormChange,
-    displayEditFoodForm,
     handleDeleteFoodSubmit
 }) {
+    
+
     return (
         <div>
             <EditAndDeleteFoodButtons
                         food={food}
-                        displayEditFoodForm={displayEditFoodForm}
+                        daysWithFoods={daysWithFoods}
+                        setEditFoodFormData={setEditFoodFormData}
                         handleDeleteFoodSubmit={handleDeleteFoodSubmit}
                       />
                       <form
