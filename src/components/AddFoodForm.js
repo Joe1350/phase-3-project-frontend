@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AddFoodButton from "./AddFoodButton";
 
 function AddFoodForm({
     day,
@@ -63,7 +64,7 @@ function AddFoodForm({
         e.target.nextSibling.innerText = "Add Food"
         setAddFoodFormData({
           name: "",
-          category: "",
+          calories: "",
           fat: "",
           fiber: "",
           day_id: "",
@@ -82,6 +83,7 @@ function AddFoodForm({
                     <input
                         type="text"
                         name="name"
+                        value={addFoodFormData.name}
                         onChange={handleAddFoodFormChange}
                     />
                 </label>
@@ -91,6 +93,7 @@ function AddFoodForm({
                     <input
                         type="number"
                         name="calories"
+                        value={addFoodFormData.calories}
                         onChange={handleAddFoodFormChange}
                     />
                 </label>
@@ -100,6 +103,7 @@ function AddFoodForm({
                     <input
                         type="number"
                         name="fat"
+                        value={addFoodFormData.fat}
                         onChange={handleAddFoodFormChange}
                     />
                 </label>
@@ -109,18 +113,14 @@ function AddFoodForm({
                     <input
                         type="number"
                         name="fiber"
+                        value={addFoodFormData.fiber}
                         onChange={handleAddFoodFormChange}
                     />
                 </label>
                 <br></br>
-                <button>Submit Food</button>
-              </form>
-              <button
-                id="displayAddFoodForm"
-                onClick={displayAddFoodFormClick}
-              >
-                Add Food
-              </button>
+                <button type="submit">Submit Food</button>
+            </form>
+            <AddFoodButton displayAddFoodFormClick={displayAddFoodFormClick} />
         </div>
     )
 }

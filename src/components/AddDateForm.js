@@ -27,14 +27,19 @@ function AddDateForm({ onSetDays }) {
         })
             .then(r => r.json())
             .then(newDate => onSetDays(newDate))
-            setDateFormData("")
+        setDateFormData({...dateFormData, date: ""})
     }
 
     return (
         <form onSubmit={handleDateFormSubmit}>
             <label>
                 Add a date: 
-                <input type="text" name="date" onChange={handleDateFormChange} />
+                <input
+                    type="text"
+                    name="date"
+                    value={dateFormData.date}
+                    onChange={handleDateFormChange}
+                />
                 <button type="submit">Add Day</button>
                 <br></br>
                 <small>
