@@ -13,13 +13,6 @@ function AddFoodForm({
         fiber: "",
     })
     
-    function handleAddFoodFormChange(e) {
-        setAddFoodFormData({
-            ...addFoodFormData,
-            [e.target.name]: e.target.value,
-        })
-    }
-    
     function handleAddFoodFormSubmit(e) {
         e.preventDefault()
     
@@ -57,6 +50,13 @@ function AddFoodForm({
         })
         e.target.style.display = "none"
         e.target.nextSibling.innerText = "Add Food"
+    }
+
+    function handleAddFoodFormChange(e) {
+        setAddFoodFormData({
+            ...addFoodFormData,
+            [e.target.name]: e.target.value,
+        })
     }
 
     return (

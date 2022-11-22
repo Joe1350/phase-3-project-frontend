@@ -9,10 +9,8 @@ function FoodListing({
     editFoodFormData,
     setEditFoodFormData
 }) {
-    
-
     return (
-        <div key={food.id}>
+        <div>
             <h3>
                 {food.name}
             </h3>

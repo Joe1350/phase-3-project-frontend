@@ -9,12 +9,11 @@ function DateList({
     editDateFormData,
     setEditDateFormData
 }) {
-    
-
     return(
         <div className="date-list">
         {daysWithFoods.map((day) => (
             <DateListing
+                key={day.id}
                 day={day}
                 daysWithFoods={daysWithFoods}
                 handleSetFoods={handleSetFoods}

@@ -8,13 +8,6 @@ function EditFoodForm({
     editFoodFormData,
     setEditFoodFormData,
 }) {
-    function handleEditFoodFormChange(e) {
-        setEditFoodFormData({
-            ...editFoodFormData,
-            [e.target.name]: e.target.value,
-        })
-    }
-
     function handleEditFoodFormSubmit(e) {
         e.preventDefault()
     
@@ -48,7 +41,12 @@ function EditFoodForm({
         e.target.style.display = "none"
     }
 
-    
+    function handleEditFoodFormChange(e) {
+        setEditFoodFormData({
+            ...editFoodFormData,
+            [e.target.name]: e.target.value,
+        })
+    }
 
     return (
         <div>

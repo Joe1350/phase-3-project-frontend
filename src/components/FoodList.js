@@ -8,12 +8,11 @@ function FoodList({
     editFoodFormData,
     setEditFoodFormData
 }) {
-    
-
     return (
         <div className="food-list">
             {day.foods.map(food => (
                 <FoodListing
+                    key={food.id}
                     food={food}
                     daysWithFoods={daysWithFoods}
                     handleSetFoods={handleSetFoods}

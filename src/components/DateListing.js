@@ -21,10 +21,8 @@ function DateListing({
         }
     }
 
-    
-
     return(
-        <div id="date-listing" key={day.id}>
+        <div id="date-listing">
             <h2 id="date" 
                 onClick={handleClickOnDate}
             >

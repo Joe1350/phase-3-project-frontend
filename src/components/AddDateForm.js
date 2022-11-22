@@ -6,13 +6,6 @@ function AddDateForm({ onSetDays }) {
         foods: [],
     })
 
-    function handleDateFormChange(e) {
-        setDateFormData({
-            date: e.target.value,
-            foods: [],
-        })
-    }
-
     function handleDateFormSubmit(e) {
         e.preventDefault()
     
@@ -28,6 +21,13 @@ function AddDateForm({ onSetDays }) {
             .then(r => r.json())
             .then(newDate => onSetDays(newDate))
         setDateFormData({...dateFormData, date: ""})
+    }
+
+    function handleDateFormChange(e) {
+        setDateFormData({
+            date: e.target.value,
+            foods: [],
+        })
     }
 
     return (
