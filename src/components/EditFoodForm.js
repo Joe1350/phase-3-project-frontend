@@ -4,12 +4,17 @@ import EditAndDeleteFoodButtons from "./EditAndDeleteFoodButtons";
 function EditFoodForm({
     food,
     daysWithFoods,
+    editFoodFormData,
     setEditFoodFormData,
     handleEditFoodFormSubmit,
-    handleEditFoodFormChange,
     handleDeleteFoodSubmit
 }) {
-    
+    function handleEditFoodFormChange(e) {
+        setEditFoodFormData({
+            ...editFoodFormData,
+            [e.target.name]: e.target.value,
+        })
+    }
 
     return (
         <div>

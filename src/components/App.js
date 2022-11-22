@@ -46,13 +46,6 @@ function App() {
     setDaysWithFoods(updatedDays)
   }
 
-  function handleEditFoodFormChange(e) {
-    setEditFoodFormData({
-      ...editFoodFormData,
-      [e.target.name]: e.target.value,
-    })
-  }
-
   function handleEditFoodFormSubmit(e) {
     e.preventDefault()
 
@@ -180,10 +173,11 @@ function App() {
         handleEditDateSubmit={handleEditDateSubmit}
         handleDeleteFoodSubmit={handleDeleteFoodSubmit}
         handleEditFoodFormSubmit={handleEditFoodFormSubmit}
-        handleEditFoodFormChange={handleEditFoodFormChange}
         handleSetFoods={handleSetFoods}
-        editDateFormData={editDateFormData}
+        editFoodFormData={editFoodFormData}
         setEditFoodFormData={setEditFoodFormData}
+        editDateFormData={editDateFormData}
+        setEditDateFormData={setEditDateFormData}
       />
     </div>
   );
