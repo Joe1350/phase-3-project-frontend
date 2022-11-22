@@ -3,11 +3,15 @@ import EditAndDeleteDateButtons from "./EditAndDeleteDateButtons";
 
 function EditDateForm({
     day,
-    handleEditDateFormChange,
     editDateFormData,
+    setEditDateFormData,
     handleEditDateSubmit,
     handleDeleteDateClick
 }) {
+    function handleEditDateFormChange(e) {
+        setEditDateFormData(e.target.value)
+    }
+
     return(
         <div>
             <EditAndDeleteDateButtons

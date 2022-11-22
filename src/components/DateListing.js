@@ -9,7 +9,6 @@ function DateListing({
     setEditFoodFormData,
     daysWithFoods,
     handleDeleteDateClick,
-    handleEditDateFormChange,
     handleEditDateSubmit,
     handleSetFoods,
 }) {
@@ -36,7 +35,6 @@ function DateListing({
             <div id={day.date} style={{ display: "none" }}>
                 <EditDateForm
                     day={day}
-                    handleEditDateFormChange={handleEditDateFormChange}
                     handleEditDateSubmit={handleEditDateSubmit}
                     handleDeleteDateClick={handleDeleteDateClick}
                 />

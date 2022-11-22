@@ -45,10 +45,6 @@ function App() {
   function handleSetFoods(updatedDays) {
     setDaysWithFoods(updatedDays)
   }
-  
-  function handleEditDateFormChange(e) {
-    setEditDateFormData(e.target.value)
-  }
 
   function handleEditDateSubmit(e) {
     e.preventDefault()
@@ -97,7 +93,6 @@ function App() {
       <DateList
         daysWithFoods={daysWithFoods}
         handleDeleteDateClick={handleDeleteDateClick}
-        handleEditDateFormChange={handleEditDateFormChange}
         handleEditDateSubmit={handleEditDateSubmit}
         handleSetFoods={handleSetFoods}
         editFoodFormData={editFoodFormData}

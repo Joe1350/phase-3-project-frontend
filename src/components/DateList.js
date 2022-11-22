@@ -4,7 +4,6 @@ import DateListing from "./DateListing"
 function DateList({
     daysWithFoods,
     handleDeleteDateClick,
-    handleEditDateFormChange,
     handleEditDateSubmit,
     handleSetFoods,
     editFoodFormData,
@@ -21,7 +20,6 @@ function DateList({
                 day={day}
                 daysWithFoods={daysWithFoods}
                 handleDeleteDateClick={handleDeleteDateClick}
-                handleEditDateFormChange={handleEditDateFormChange}
                 handleEditDateSubmit={handleEditDateSubmit}
                 handleSetFoods={handleSetFoods}
                 editFoodFormData={editFoodFormData}
