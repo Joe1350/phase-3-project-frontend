@@ -2,18 +2,18 @@ import React from "react";
 import DateListing from "./DateListing"
 
 function DateList({
-    daysWithFoods,
-    onSetDaysWithFoods,
+    days,
+    onSetDays,
 }) {
     return(
         <div className="date-list">
-            {daysWithFoods.map(day => {
+            {days.map(day => {
                 return (
                     <DateListing
                         key={day.id}
                         day={day}
-                        daysWithFoods={daysWithFoods}
-                        onSetDaysWithFoods={onSetDaysWithFoods}
+                        days={days}
+                        onSetDays={onSetDays}
                     />
                 )
             })}

@@ -3,8 +3,8 @@ import FoodListing from "./FoodListing";
 
 function FoodList({
     day,
-    daysWithFoods,
-    onSetDaysWithFoods,
+    days,
+    onSetDays
 }) {
     return (
         <div className="food-list">
@@ -12,8 +12,8 @@ function FoodList({
                 <FoodListing
                     key={food.id}
                     food={food}
-                    daysWithFoods={daysWithFoods}
-                    onSetDaysWithFoods={onSetDaysWithFoods}
+                    days={days}
+                    onSetDays={onSetDays}
                 />
             ))}
         </div>

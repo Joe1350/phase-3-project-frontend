@@ -3,8 +3,8 @@ import EditAndDeleteFoodButtons from "./EditAndDeleteFoodButtons";
 
 function EditFoodForm({
     food,
-    daysWithFoods,
-    onSetDaysWithFoods,
+    days,
+    onSetDays,
 }) {
     const [editFoodFormData, setEditFoodFormData] = useState({
         name: "",
@@ -21,7 +21,7 @@ function EditFoodForm({
     function handleEditFoodFormSubmit(e) {
         e.preventDefault()
     
-        const dayWithFoodToEdit = daysWithFoods.find(
+        const dayWithFoodToEdit = days.find(
             day => day.foods.find(food => food.id == e.target.id)
         )
         const updatedFood = {
@@ -35,7 +35,7 @@ function EditFoodForm({
             food.id == e.target.id ? updatedFood : food
         ))
         const updatedDay = {...dayWithFoodToEdit, foods: updatedFoods}
-        const updatedDays = daysWithFoods.map(day => (
+        const updatedDays = days.map(day => (
             day.id == dayWithFoodToEdit.id ? updatedDay : day
         ))
     
@@ -47,7 +47,7 @@ function EditFoodForm({
             body: JSON.stringify(updatedFood),
         })
             .then(r => r.json())
-            .then(() => onSetDaysWithFoods(updatedDays))
+            .then(() => onSetDays(updatedDays))
         e.target.style.display = "none"
     }
 
@@ -62,8 +62,8 @@ function EditFoodForm({
         <div>
             <EditAndDeleteFoodButtons
                 food={food}
-                daysWithFoods={daysWithFoods}
-                onSetDaysWithFoods={onSetDaysWithFoods}
+                days={days}
+                onSetDays={onSetDays}
                 onSetEditFoodFormData={handleSetEditFoodFormData}
             />
             <form

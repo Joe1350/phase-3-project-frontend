@@ -23,7 +23,7 @@ import DateList from "./DateList";
         // AddFoodButton
 
 function App() {
-  const [daysWithFoods, setDaysWithFoods] = useState([])
+  const [days, setDays] = useState([])
 
   useEffect(() => {
     fetch("http://localhost:9292/days")
@@ -31,20 +31,20 @@ function App() {
     .then(setDaysWithFoods)
   }, [])
 
-  function handleSetDaysWithFoods(updatedDays) {
-    setDaysWithFoods(updatedDays)
+  function handleSetDays(updatedDays) {
+    setDays(updatedDays)
   }
 
   return (
     <div>
       <h1>Calorie Tracker</h1>
       <AddDateForm
-        daysWithFoods={daysWithFoods}
-        onSetDaysWithFoods={handleSetDaysWithFoods}
+        days={days}
+        onSetDays={handleSetDays}
       />
       <DateList
-        daysWithFoods={daysWithFoods}
-        onSetDaysWithFoods={handleSetDaysWithFoods}
+        days={days}
+        onSetDays={handleSetDays}
       />
     </div>
   );

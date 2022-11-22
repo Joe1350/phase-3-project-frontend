@@ -2,14 +2,14 @@ import React from "react";
 
 function EditAndDeleteFoodButtons({
   food,
-  daysWithFoods,
-  onSetDaysWithFoods,
+  days,
+  onSetDays,
   onSetEditFoodFormData
 }) {
   function displayEditFoodFormClick(e) {
     const x = document.getElementById(e.target.className)
     const y = x.children
-    const dayWithFoodToDisplay = daysWithFoods.find(day => (
+    const dayWithFoodToDisplay = days.find(day => (
       day.foods.find(food => (
         food.id == e.target.className
       ))
@@ -33,14 +33,14 @@ function EditAndDeleteFoodButtons({
   }
 
   function handleDeleteFoodSubmit(e) {
-    const dayWithFoodToDelete = daysWithFoods.find(
+    const dayWithFoodToDelete = days.find(
       day => day.foods.find(food => food.id == e.target.className)
     )
     const updatedFoods = dayWithFoodToDelete.foods.filter(food => (
       food.id == e.target.className ? null : food
     ))
     const updatedDay = {...dayWithFoodToDelete, foods: updatedFoods}
-    const updatedDays = daysWithFoods.map(day => (
+    const updatedDays = days.map(day => (
       day.id == dayWithFoodToDelete.id ? updatedDay : day
     ))
 
@@ -48,7 +48,7 @@ function EditAndDeleteFoodButtons({
       method: "DELETE",
     })
       .then(r => r.json())
-      .then(() => onSetDaysWithFoods(updatedDays))
+      .then(() => onSetDays(updatedDays))
   }
 
   return(

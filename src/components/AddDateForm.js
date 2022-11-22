@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 function AddDateForm({
-    daysWithFoods,
-    onSetDaysWithFoods
+    days,
+    onSetDays
 }) {
     const [dateFormData, setDateFormData] = useState({
         date: "",
@@ -13,7 +13,7 @@ function AddDateForm({
         e.preventDefault()
     
         const newDate = dateFormData
-        const updatedDays = [...daysWithFoods, newDate]
+        const updatedDays = [...days, newDate]
     
         fetch("http://localhost:9292/days", {
             method: "POST",
@@ -23,7 +23,7 @@ function AddDateForm({
             body: JSON.stringify(newDate),
         })
             .then(r => r.json())
-            .then(() => onSetDaysWithFoods(updatedDays))
+            .then(() => onSetDays(updatedDays))
         setDateFormData({...dateFormData, date: ""})
     }
 

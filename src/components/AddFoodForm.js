@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import AddFoodButton from "./AddFoodButton";
 
-function AddFoodForm({
-    day,
-    daysWithFoods,
-    onSetDaysWithFoods
-}) {
+function AddFoodForm({ day, days, onSetDays }) {
     const [addFoodFormData, setAddFoodFormData] = useState({
         name: "",
         category: "",
@@ -16,7 +12,7 @@ function AddFoodForm({
     function handleAddFoodFormSubmit(e) {
         e.preventDefault()
     
-        const dayWithFood = daysWithFoods.find(day => day.id == e.target.id)
+        const dayWithFood = days.find(day => day.id == e.target.id)
         const newFood = {
             name: addFoodFormData.name,
             calories: addFoodFormData.calories,
@@ -36,10 +32,10 @@ function AddFoodForm({
             .then(() => {
                 const updatedFoods = [...dayWithFood.foods, newFood]
                 const updatedDay = {...dayWithFood, foods: updatedFoods}
-                const updatedDays = daysWithFoods.map(day => (
+                const updatedDays = days.map(day => (
                     day.id == dayWithFood.id ? updatedDay : day
                 ))
-                onSetDaysWithFoods(updatedDays)
+                onSetDays(updatedDays)
             })
         setAddFoodFormData({
             name: "",

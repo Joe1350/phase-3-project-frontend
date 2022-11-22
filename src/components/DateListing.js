@@ -5,8 +5,8 @@ import FoodList from "./FoodList";
 
 function DateListing({
     day,
-    daysWithFoods,
-    onSetDaysWithFoods,
+    days,
+    onSetDays,
 }) {
     function handleClickOnDate(e) {
         const date = e.target.innerHTML
@@ -29,18 +29,18 @@ function DateListing({
             <div id={day.date} style={{ display: "none" }}>
                 <EditDateForm
                     day={day}
-                    daysWithFoods={daysWithFoods}
-                    onSetDaysWithFoods={onSetDaysWithFoods}
+                    days={days}
+                    onSetDays={onSetDays}
                 />
                 <FoodList
                     day={day}
-                    daysWithFoods={daysWithFoods}
-                    onSetDaysWithFoods={onSetDaysWithFoods}
+                    days={days}
+                    onSetDays={onSetDays}
                 />
                 <AddFoodForm
                     day={day}
-                    daysWithFoods={daysWithFoods}
-                    onSetDaysWithFoods={onSetDaysWithFoods}
+                    days={days}
+                    onSetDays={onSetDays}
                 />
             </div>
         </div>
