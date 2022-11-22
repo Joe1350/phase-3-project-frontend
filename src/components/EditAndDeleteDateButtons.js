@@ -3,9 +3,9 @@ import React from "react";
 function EditAndDeleteDateButtons({
     day,
     daysWithFoods,
-    handleSetFoods
+    onSetDaysWithFoods
 }) {
-    function displayEditDateForm(e) {
+    function displayEditDateFormClick(e) {
         const x = document.getElementById(e.target.className)
     
         if (x.style.display === "none") {
@@ -27,14 +27,14 @@ function EditAndDeleteDateButtons({
             method: "DELETE",
         })
             .then(r => r.json())
-            .then(() => handleSetFoods(updatedDays))
+            .then(() => onSetDaysWithFoods(updatedDays))
     }
 
     return(
         <div>
             <button
                 className={`${day.id}_${day.date}`}
-                onClick={displayEditDateForm}
+                onClick={displayEditDateFormClick}
             >
                 Edit Date
             </button>

@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 
-function AddDateForm({ onSetDays }) {
+function AddDateForm({
+    daysWithFoods,
+    onSetDaysWithFoods
+}) {
     const [dateFormData, setDateFormData] = useState({
         date: "",
         foods: [],
     })
 
-    function handleDateFormSubmit(e) {
+    function handleAddDateFormSubmit(e) {
         e.preventDefault()
     
         const newDate = dateFormData
+        const updatedDays = daysWithFoods.push(newDate)
     
         fetch("http://localhost:9292/days_with_foods", {
             method: "POST",
@@ -19,11 +23,11 @@ function AddDateForm({ onSetDays }) {
             body: JSON.stringify(newDate),
         })
             .then(r => r.json())
-            .then(newDate => onSetDays(newDate))
+            .then(() => onSetDaysWithFoods(updatedDays))
         setDateFormData({...dateFormData, date: ""})
     }
 
-    function handleDateFormChange(e) {
+    function handleAddDateFormChange(e) {
         setDateFormData({
             date: e.target.value,
             foods: [],
@@ -31,14 +35,14 @@ function AddDateForm({ onSetDays }) {
     }
 
     return (
-        <form onSubmit={handleDateFormSubmit}>
+        <form onSubmit={handleAddDateFormSubmit}>
             <label>
                 Add a date: 
                 <input
                     type="text"
                     name="date"
                     value={dateFormData.date}
-                    onChange={handleDateFormChange}
+                    onChange={handleAddDateFormChange}
                 />
                 <button type="submit">Add Day</button>
                 <br></br>

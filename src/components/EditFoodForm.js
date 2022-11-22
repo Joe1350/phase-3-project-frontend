@@ -4,7 +4,7 @@ import EditAndDeleteFoodButtons from "./EditAndDeleteFoodButtons";
 function EditFoodForm({
     food,
     daysWithFoods,
-    handleSetFoods,
+    onSetDaysWithFoods,
     editFoodFormData,
     setEditFoodFormData,
 }) {
@@ -37,7 +37,7 @@ function EditFoodForm({
             body: JSON.stringify(updatedFood),
         })
             .then(r => r.json())
-            .then(() => handleSetFoods(updatedDays))
+            .then(() => onSetDaysWithFoods(updatedDays))
         e.target.style.display = "none"
     }
 
@@ -53,7 +53,7 @@ function EditFoodForm({
             <EditAndDeleteFoodButtons
                 food={food}
                 daysWithFoods={daysWithFoods}
-                handleSetFoods={handleSetFoods}
+                onSetDaysWithFoods={onSetDaysWithFoods}
                 setEditFoodFormData={setEditFoodFormData}
             />
             <form

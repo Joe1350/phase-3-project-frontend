@@ -38,21 +38,20 @@ function App() {
     .then(setDaysWithFoods)
   }, [])
 
-  function handleSetDays(newDate) {
-    setDaysWithFoods([...daysWithFoods, newDate])
-  }
-
-  function handleSetFoods(updatedDays) {
+  function handleSetDaysWithFoods(updatedDays) {
     setDaysWithFoods(updatedDays)
   }
 
   return (
     <div>
       <h1>Calorie Tracker</h1>
-      <AddDateForm onSetDays={handleSetDays} />
+      <AddDateForm
+        daysWithFoods={daysWithFoods}
+        onSetDaysWithFoods={handleSetDaysWithFoods}
+      />
       <DateList
         daysWithFoods={daysWithFoods}
-        handleSetFoods={handleSetFoods}
+        onSetDaysWithFoods={handleSetDaysWithFoods}
         editFoodFormData={editFoodFormData}
         setEditFoodFormData={setEditFoodFormData}
         editDateFormData={editDateFormData}

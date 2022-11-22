@@ -3,7 +3,7 @@ import DateListing from "./DateListing"
 
 function DateList({
     daysWithFoods,
-    handleSetFoods,
+    onSetDaysWithFoods,
     editFoodFormData,
     setEditFoodFormData,
     editDateFormData,
@@ -16,7 +16,7 @@ function DateList({
                 key={day.id}
                 day={day}
                 daysWithFoods={daysWithFoods}
-                handleSetFoods={handleSetFoods}
+                onSetDaysWithFoods={onSetDaysWithFoods}
                 editFoodFormData={editFoodFormData}
                 setEditFoodFormData={setEditFoodFormData}
                 editDateFormData={editDateFormData}

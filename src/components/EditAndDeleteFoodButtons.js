@@ -3,10 +3,10 @@ import React from "react";
 function EditAndDeleteFoodButtons({
   food,
   daysWithFoods,
-  handleSetFoods,
+  onSetDaysWithFoods,
   setEditFoodFormData
 }) {
-  function displayEditFoodForm(e) {
+  function displayEditFoodFormClick(e) {
     const x = document.getElementById(e.target.className)
     const y = x.children
     const dayWithFoodToDisplay = daysWithFoods.find(day => (
@@ -48,14 +48,14 @@ function EditAndDeleteFoodButtons({
       method: "DELETE",
     })
       .then(r => r.json())
-      .then(() => handleSetFoods(updatedDays))
+      .then(() => onSetDaysWithFoods(updatedDays))
   }
 
   return(
     <div>
       <button
         className={food.id}
-        onClick={displayEditFoodForm}
+        onClick={displayEditFoodFormClick}
       >
         Edit Food
       </button>

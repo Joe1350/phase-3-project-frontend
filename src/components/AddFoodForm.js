@@ -4,7 +4,7 @@ import AddFoodButton from "./AddFoodButton";
 function AddFoodForm({
     day,
     daysWithFoods,
-    onSetFoods
+    onSetDaysWithFoods
 }) {
     const [addFoodFormData, setAddFoodFormData] = useState({
         name: "",
@@ -39,7 +39,7 @@ function AddFoodForm({
                 const updatedDays = daysWithFoods.map(day => (
                     day.id == dayWithFood.id ? updatedDay : day
                 ))
-                onSetFoods(updatedDays)
+                onSetDaysWithFoods(updatedDays)
             })
         setAddFoodFormData({
             name: "",

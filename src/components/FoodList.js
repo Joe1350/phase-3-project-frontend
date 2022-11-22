@@ -4,7 +4,7 @@ import FoodListing from "./FoodListing";
 function FoodList({
     day,
     daysWithFoods,
-    handleSetFoods,
+    onSetDaysWithFoods,
     editFoodFormData,
     setEditFoodFormData
 }) {
@@ -15,7 +15,7 @@ function FoodList({
                     key={food.id}
                     food={food}
                     daysWithFoods={daysWithFoods}
-                    handleSetFoods={handleSetFoods}
+                    onSetDaysWithFoods={onSetDaysWithFoods}
                     editFoodFormData={editFoodFormData}
                     setEditFoodFormData={setEditFoodFormData}
                 />

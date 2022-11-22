@@ -4,7 +4,7 @@ import EditAndDeleteDateButtons from "./EditAndDeleteDateButtons";
 function EditDateForm({
     day,
     daysWithFoods,
-    handleSetFoods,
+    onSetDaysWithFoods,
     editDateFormData,
     setEditDateFormData
 }) {
@@ -31,7 +31,7 @@ function EditDateForm({
             }),
         })
             .then(r => r.json())
-            .then(() => handleSetFoods(updatedDays))
+            .then(() => onSetDaysWithFoods(updatedDays))
         setEditDateFormData("")
         e.target.form.style.display = "none"
         e.target.parentElement.parentElement.firstChild.firstChild.innerText = "Edit Date"
@@ -42,7 +42,7 @@ function EditDateForm({
             <EditAndDeleteDateButtons
                 day={day}
                 daysWithFoods={daysWithFoods}
-                handleSetFoods={handleSetFoods}
+                onSetDaysWithFoods={onSetDaysWithFoods}
             />
             <form id={`${day.id}_${day.date}`} style={{ display: "none" }}>
                 <label>
