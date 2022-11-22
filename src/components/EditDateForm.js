@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import EditAndDeleteDateButtons from "./EditAndDeleteDateButtons";
 
 function EditDateForm({
     day,
     daysWithFoods,
-    onSetDaysWithFoods,
-    editDateFormData,
-    setEditDateFormData
+    onSetDaysWithFoods
 }) {
+    const [editDateFormData, setEditDateFormData] = useState("")
+
     function handleEditDateFormChange(e) {
         setEditDateFormData(e.target.value)
     }
@@ -16,10 +16,10 @@ function EditDateForm({
         e.preventDefault()
     
         const dayId = e.target.form.id.split("_")[0]
+        const updatedDate = editDateFormData
         const updatedDays = daysWithFoods.map(day => (
-            day.id == dayId ? {...day, date: editDateFormData} : day
+            day.id == dayId ? {...day, date: updatedDate} : day
         ))
-        const updatedDay = editDateFormData
     
         fetch(`http://localhost:9292/days/${dayId}`, {
             method: "PATCH",
@@ -27,7 +27,7 @@ function EditDateForm({
                 "Content-Type": "application/json",
             },
             body:JSON.stringify({
-                date: updatedDay,
+                date: updatedDate,
             }),
         })
             .then(r => r.json())

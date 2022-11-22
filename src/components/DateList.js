@@ -6,24 +6,22 @@ function DateList({
     onSetDaysWithFoods,
     editFoodFormData,
     setEditFoodFormData,
-    editDateFormData,
-    setEditDateFormData
 }) {
     return(
         <div className="date-list">
-        {daysWithFoods.map((day) => (
-            <DateListing
-                key={day.id}
-                day={day}
-                daysWithFoods={daysWithFoods}
-                onSetDaysWithFoods={onSetDaysWithFoods}
-                editFoodFormData={editFoodFormData}
-                setEditFoodFormData={setEditFoodFormData}
-                editDateFormData={editDateFormData}
-                setEditDateFormData={setEditDateFormData}
-            />
-        ))}
-      </div>
+            {daysWithFoods.map(day => {
+                return (
+                    <DateListing
+                        key={day.id}
+                        day={day}
+                        daysWithFoods={daysWithFoods}
+                        onSetDaysWithFoods={onSetDaysWithFoods}
+                        editFoodFormData={editFoodFormData}
+                        setEditFoodFormData={setEditFoodFormData}
+                    />
+                )
+            })}
+        </div>
     )
 }
 

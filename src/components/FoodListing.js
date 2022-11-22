@@ -5,9 +5,7 @@ import FoodListingInfo from "./FoodListingInfo";
 function FoodListing({
     food,
     daysWithFoods,
-    onSetDaysWithFoods,
-    editFoodFormData,
-    setEditFoodFormData
+    onSetDaysWithFoods
 }) {
     return (
         <div>
@@ -18,8 +16,6 @@ function FoodListing({
                 food={food}
                 daysWithFoods={daysWithFoods}
                 onSetDaysWithFoods={onSetDaysWithFoods}
-                editFoodFormData={editFoodFormData}
-                setEditFoodFormData={setEditFoodFormData}
             />
             <FoodListingInfo food={food} />
         </div>

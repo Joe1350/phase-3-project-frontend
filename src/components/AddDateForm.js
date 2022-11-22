@@ -13,7 +13,7 @@ function AddDateForm({
         e.preventDefault()
     
         const newDate = dateFormData
-        const updatedDays = daysWithFoods.push(newDate)
+        const updatedDays = [...daysWithFoods, newDate]
     
         fetch("http://localhost:9292/days_with_foods", {
             method: "POST",
@@ -45,12 +45,6 @@ function AddDateForm({
                     onChange={handleAddDateFormChange}
                 />
                 <button type="submit">Add Day</button>
-                <br></br>
-                <small>
-                    *must be entered MM/DD/YYYY
-                    <br></br>
-                    *currently dates cannot be deleted
-                </small>
             </label>
         </form>
     )

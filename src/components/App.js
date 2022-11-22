@@ -24,7 +24,6 @@ import DateList from "./DateList";
 
 function App() {
   const [daysWithFoods, setDaysWithFoods] = useState([])
-  const [editDateFormData, setEditDateFormData] = useState("")
   const [editFoodFormData, setEditFoodFormData] = useState({
     name: "",
     calories: "",
@@ -54,8 +53,6 @@ function App() {
         onSetDaysWithFoods={handleSetDaysWithFoods}
         editFoodFormData={editFoodFormData}
         setEditFoodFormData={setEditFoodFormData}
-        editDateFormData={editDateFormData}
-        setEditDateFormData={setEditDateFormData}
       />
     </div>
   );
