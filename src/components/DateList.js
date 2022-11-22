@@ -7,7 +7,6 @@ function DateList({
     handleDeleteDateClick,
     handleEditDateFormChange,
     handleEditDateSubmit,
-    handleDeleteFoodSubmit,
     handleSetFoods,
     editFoodFormData,
     setEditFoodFormData,
@@ -26,7 +25,6 @@ function DateList({
                 handleDeleteDateClick={handleDeleteDateClick}
                 handleEditDateFormChange={handleEditDateFormChange}
                 handleEditDateSubmit={handleEditDateSubmit}
-                handleDeleteFoodSubmit={handleDeleteFoodSubmit}
                 handleSetFoods={handleSetFoods}
                 editFoodFormData={editFoodFormData}
                 setEditFoodFormData={setEditFoodFormData}

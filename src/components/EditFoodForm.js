@@ -7,7 +7,6 @@ function EditFoodForm({
     handleSetFoods,
     editFoodFormData,
     setEditFoodFormData,
-    handleDeleteFoodSubmit
 }) {
     function handleEditFoodFormChange(e) {
         setEditFoodFormData({
@@ -49,13 +48,15 @@ function EditFoodForm({
         e.target.style.display = "none"
     }
 
+    
+
     return (
         <div>
             <EditAndDeleteFoodButtons
                 food={food}
                 daysWithFoods={daysWithFoods}
+                handleSetFoods={handleSetFoods}
                 setEditFoodFormData={setEditFoodFormData}
-                handleDeleteFoodSubmit={handleDeleteFoodSubmit}
             />
             <form
                 id={food.id}

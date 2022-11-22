@@ -46,26 +46,6 @@ function App() {
     setDaysWithFoods(updatedDays)
   }
 
-  function handleDeleteFoodSubmit(e) {
-    console.log(e)
-    const dayWithFoodToDelete = daysWithFoods.find(
-      day => day.foods.find(food => food.id == e.target.className)
-    )
-    const updatedFoods = dayWithFoodToDelete.foods.filter(food => (
-      food.id == e.target.className ? null : food
-    ))
-    const updatedDay = {...dayWithFoodToDelete, foods: updatedFoods}
-    const updatedDays = daysWithFoods.map(day => (
-      day.id == dayWithFoodToDelete.id ? updatedDay : day
-    ))
-
-    fetch(`http://localhost:9292/foods/${e.target.className}`, {
-      method: "DELETE",
-    })
-    .then(r => r.json())
-    .then(setDaysWithFoods(updatedDays))
-  }
-
   function displayEditDateForm(e) {
     const x = document.getElementById(e.target.className)
 
@@ -132,7 +112,6 @@ function App() {
         handleDeleteDateClick={handleDeleteDateClick}
         handleEditDateFormChange={handleEditDateFormChange}
         handleEditDateSubmit={handleEditDateSubmit}
-        handleDeleteFoodSubmit={handleDeleteFoodSubmit}
         handleSetFoods={handleSetFoods}
         editFoodFormData={editFoodFormData}
         setEditFoodFormData={setEditFoodFormData}

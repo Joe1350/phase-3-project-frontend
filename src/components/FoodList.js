@@ -6,8 +6,7 @@ function FoodList({
     daysWithFoods,
     handleSetFoods,
     editFoodFormData,
-    setEditFoodFormData,
-    handleDeleteFoodSubmit
+    setEditFoodFormData
 }) {
     
 
@@ -20,7 +19,6 @@ function FoodList({
                     handleSetFoods={handleSetFoods}
                     editFoodFormData={editFoodFormData}
                     setEditFoodFormData={setEditFoodFormData}
-                    handleDeleteFoodSubmit={handleDeleteFoodSubmit}
                 />
             ))}
         </div>

@@ -3,8 +3,8 @@ import React from "react";
 function EditAndDeleteFoodButtons({
   food,
   daysWithFoods,
-  setEditFoodFormData,
-  handleDeleteFoodSubmit
+  handleSetFoods,
+  setEditFoodFormData
 }) {
   function displayEditFoodForm(e) {
     const x = document.getElementById(e.target.className)
@@ -30,6 +30,25 @@ function EditAndDeleteFoodButtons({
       x.style.display = "none"
       e.target.innerText = "Edit Food"
     }
+  }
+
+  function handleDeleteFoodSubmit(e) {
+    const dayWithFoodToDelete = daysWithFoods.find(
+      day => day.foods.find(food => food.id == e.target.className)
+    )
+    const updatedFoods = dayWithFoodToDelete.foods.filter(food => (
+      food.id == e.target.className ? null : food
+    ))
+    const updatedDay = {...dayWithFoodToDelete, foods: updatedFoods}
+    const updatedDays = daysWithFoods.map(day => (
+      day.id == dayWithFoodToDelete.id ? updatedDay : day
+    ))
+
+    fetch(`http://localhost:9292/foods/${e.target.className}`, {
+      method: "DELETE",
+    })
+      .then(r => r.json())
+      .then(() => handleSetFoods(updatedDays))
   }
 
   return(
