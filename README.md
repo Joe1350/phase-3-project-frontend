@@ -7,8 +7,8 @@ Calorie Tracker is a web application to track daily calories, fat, and fiber, an
 ## Instalation
 
 In order to view this project fork and clone the repository.
-Run <npm install> to download dependencies
-Run <npm start> to start the server at port 3000
+Run `npm install` to download dependencies
+Run `npm start` to start the server at port 3000
 
 ## Usage
 

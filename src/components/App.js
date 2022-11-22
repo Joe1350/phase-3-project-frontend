@@ -1,15 +1,31 @@
 import React, { useEffect, useState } from "react";
+import AddDateForm from "./AddDateForm";
+import DateList from "./DateList";
+import AddFoodForm from "./AddFoodForm";
+
+// app
+  // <h1>
+  // AddDateForm
+  // DateList
+    // DateListing
+      // <button> edit date
+      // <button> delete date
+      // EditDateForm
+      // <h2>
+      // Food List
+        //FoodListing
+          // <h3>
+          // <button> (edit food)
+          // <button> (delete food)
+          // EditFoodForm
+          // FoodInfo
+        // AddFoodForm
+          // <form>
+          // <button> (add food)
 
 function App() {
-  const [days, setDays] = useState([])
-  const [foods, setFoods] = useState([])
-  const [dateFormData, setDateFormData] = useState("")
-  const [addFoodFormData, setAddFoodFormData] = useState({
-    name: "",
-    category: "",
-    fat: "",
-    fiber: "",
-  })
+  const [daysWithFoods, setDaysWithFoods] = useState([])
+  const [editDateFormData, setEditDateFormData] = useState("")
   const [editFoodFormData, setEditFoodFormData] = useState({
     name: "",
     calories: "",
@@ -17,16 +33,12 @@ function App() {
     fiber: "",
   })
 
-  useEffect(() => {
-    fetch("http://localhost:9292/days")
-    .then(r => r.json())
-    .then(setDays)
-  }, [])
+  // const foodToDisplay = day
 
   useEffect(() => {
-    fetch("http://localhost:9292/foods")
+    fetch("http://localhost:9292/days_with_foods")
     .then(r => r.json())
-    .then(setFoods)
+    .then(setDaysWithFoods)
   }, [])
 
   function handleClickOnDate(e) {
@@ -40,112 +52,39 @@ function App() {
     }
   }
 
-  function handleDateFormChange(e) {
-    setDateFormData(e.target.value)
+  function handleSetDays(newDate) {
+    setDaysWithFoods([...daysWithFoods, newDate])
   }
 
-  function handleDateFormSubmit(e) {
-    e.preventDefault()
-    const newDate = {
-      date: dateFormData,
-    }
-    fetch("http://localhost:9292/days", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(newDate),
-    })
-    .then(r => r.json())
-    .then(setDays([...days, newDate]))
-    setDateFormData("")
+  function handleSetFoods(updatedDays) {
+    setDaysWithFoods(updatedDays)
   }
 
-  // function handleUpdateDateInState(updatedDate) {
-  //   const updatedDays = days.map(day => {
-  //     if (day.id === updatedDate.id) {
-  //       return updatedDate
-  //     } else {
-  //       return day
-  //     }
-  //   })
-  //   setDays(updatedDays)
-  // }
-
-  // function handleEditDateClick(e) {
-  //   console.log(e.target.parentElement.nextSibling.id)
-  //   days.filter(day => {
-  //     if (day.date === e.target.parentElement.nextSibling.id) {
-  //       fetch(`http://localhost:9292/days/${day.id}`, {
-  //         method: "PATCH",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({
-  //           date: dateFormData,
-  //         }),
-  //       })
-  //       .then(r => r.json())
-  //       .then(updatedDate => handleUpdateDateInState(updatedDate))
-  //       setDateFormData("")
-  //     }
-  //   })
-  // }
-
-  function handleDisplayAddFoodFormClick(e) {
-    const x = e.target.previousSibling
-
-    if (x.style.display === "none") {
-      x.style.display = "block"
-      e.target.innerText = "Hide Form"
-    } else {
-      x.style.display = "none"
-      e.target.innerText = "Add Food"
-    }
-  }
-
-  function handleAddFoodFormChange(e) {
-    setAddFoodFormData({
-      ...addFoodFormData,
-      [e.target.name]: e.target.value,
-    })
-  }
-
-  function handleAddFoodFormSubmit(e) {
-    e.preventDefault()
-
-    const newFood = {
-      name: addFoodFormData.name,
-      calories: addFoodFormData.calories,
-      fat: addFoodFormData.fat,
-      fiber: addFoodFormData.fiber,
-      day_id: e.target.id
-    }
-
-    fetch("http://localhost:9292/foods", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(newFood),
-    })
-    .then(r => r.json())
-    .then(setFoods([...foods, newFood]))
-    e.target.style.display = "none"
-    setAddFoodFormData({
-      name: "",
-      category: "",
-      fat: "",
-      fiber: "",
-    })
-  }
-
-  function handleDisplayEditFoodForm(e) {
+  function displayEditFoodForm(e) {
     const x = document.getElementById(e.target.className)
+    console.log(x)
+    const y = x.children
+    console.log(y)
+    const dayWithFoodToDisplay = daysWithFoods.find(day => (
+      day.foods.find(food => (
+        food.id == e.target.className
+      ))
+    ))
+    console.log(dayWithFoodToDisplay)
+    const foodToDisplay = dayWithFoodToDisplay.foods.find(food => (
+      food.id == e.target.className
+    ))
+    console.log(foodToDisplay.name)
+    console.log(document.getElementsByClassName("name"))
 
     if (x.style.display === "none") {
       x.style.display = "block"
       e.target.innerText = "Hide Form"
+      y[0].children[0].value = `${foodToDisplay.name}`
+      y[2].children[0].value = foodToDisplay.calories
+      y[4].children[0].value = foodToDisplay.fat
+      y[6].children[0].value = foodToDisplay.fiber
+      setEditFoodFormData(foodToDisplay)
     } else {
       x.style.display = "none"
       e.target.innerText = "Edit Food"
@@ -159,34 +98,36 @@ function App() {
     })
   }
 
-  function handleUpdateFood(updatedFood) {
-    const updatedFoods = foods.map(food => {
-      if (food.id === updatedFood.id) {
-        return updatedFood
-      } else {
-        return food
-      }
-    })
-    setFoods(updatedFoods)
-  }
-
   function handleEditFoodFormSubmit(e) {
     e.preventDefault()
+
+    const dayWithFoodToEdit = daysWithFoods.find(
+      day => day.foods.find(food => food.id == e.target.id)
+    )
+    const updatedFood = {
+      name: editFoodFormData.name,
+      calories: editFoodFormData.calories,
+      fat: editFoodFormData.fat,
+      fiber: editFoodFormData.fiber,
+      day_id: dayWithFoodToEdit.id
+    }
+    const updatedFoods = dayWithFoodToEdit.foods.map(food => (
+      food.id == e.target.id ? updatedFood : food
+    ))
+    const updatedDay = {...dayWithFoodToEdit, foods: updatedFoods}
+    const updatedDays = daysWithFoods.map(day => (
+      day.id == dayWithFoodToEdit.id ? updatedDay : day
+    ))
+
     fetch(`http://localhost:9292/foods/${e.target.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        name: editFoodFormData.name,
-        calories: editFoodFormData.calories,
-        fat: editFoodFormData.fat,
-        fiber: editFoodFormData.fiber,
-        day_id: e.target.className,
-      }),
+      body: JSON.stringify(updatedFood),
     })
     .then(r => r.json())
-    .then(updateFood => handleUpdateFood(updateFood))
+    .then(setDaysWithFoods(updatedDays))
     e.target.style.display = "none"
     setEditFoodFormData({
       name: "",
@@ -197,48 +138,116 @@ function App() {
   }
 
   function handleDeleteFood(e) {
+    const dayWithFoodToDelete = daysWithFoods.find(
+      day => day.foods.find(food => food.id == e.target.className)
+    )
+    const updatedFoods = dayWithFoodToDelete.foods.filter(food => (
+      food.id == e.target.className ? null : food
+    ))
+    const updatedDay = {...dayWithFoodToDelete, foods: updatedFoods}
+    const updatedDays = daysWithFoods.map(day => (
+      day.id == dayWithFoodToDelete.id ? updatedDay : day
+    ))
+
     fetch(`http://localhost:9292/foods/${e.target.className}`, {
       method: "DELETE",
     })
     .then(r => r.json())
-    .then(deletedFood => handleDeleteFoodFromState(deletedFood))
+    .then(setDaysWithFoods(updatedDays))
   }
 
-  function handleDeleteFoodFromState(deletedFood) {
-    const updatedFoods = foods.filter(food => {
-      if (food.id === deletedFood.id) {
-        return null
-      } else {
-        return food
-      }
+  function displayEditDateForm(e) {
+    const x = document.getElementById(e.target.className)
+
+    if (x.style.display === "none") {
+      x.style.display = "block"
+      e.target.innerText = "Hide Form"
+    } else {
+      x.style.display = "none"
+      e.target.innerText = "Edit Date"
+    }
+  }
+  
+  function handleEditDateFormChange(e) {
+    setEditDateFormData(e.target.value)
+  }
+
+  function handleEditDate(e) {
+    e.preventDefault()
+
+    const dayId = e.target.form.id.split("_")[0]
+    const updatedDays = daysWithFoods.map(day => (
+      day.id == dayId ? {...day, date: editDateFormData} : day
+    ))
+
+    fetch(`http://localhost:9292/days/${dayId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body:JSON.stringify({
+        date: editDateFormData,
+      }),
     })
-    setFoods(updatedFoods)
+    .then(r => r.json())
+    .then(setDaysWithFoods(updatedDays))
+    e.target.form.style.display = "none"
+    e.target.form.previousSibling.previousSibling.innerText = "Edit Date"
+  }
+
+  function handleDeleteDateClick(e) {
+    const dayId = e.target.className.split("_")[1]
+    const updatedDays = daysWithFoods.filter(day => (
+      day.id == dayId ? null : day
+    ))
+    console.log(updatedDays)
+
+    fetch(`http://localhost:9292/days/${dayId}`, {
+      method: "DELETE",
+    })
+    .then(r => r.json())
+    .then(setDaysWithFoods(updatedDays))
   }
 
   return (
     <div>
       <h1>Calorie Tracker</h1>
-      <form onSubmit={handleDateFormSubmit}>
-        <label>
-          Add a date: 
-          <input type="text" name="date" onChange={handleDateFormChange} />
-          <button type="submit">Add Day</button>
-          <br></br>
-          <small>*must be entered MM/DD/YYYY</small>
-        </label>
-      </form>
+      <AddDateForm onSetDays={handleSetDays} />
       <div id="date-list">
-        {days.map((day) => (
+        {daysWithFoods.map((day) => (
           <div id="date-listing" key={day.id}>
             <h2 id="date" 
               onClick={handleClickOnDate}
             >
               {day.date}
-              {/* <button onClick={handleEditDateClick} >Edit Date</button> */}
             </h2>
             <div id={day.date} style={{ display: "none" }}>
-              {foods.map((food) => {
-                if (day.id == food.day_id) {
+              <button
+                className={`${day.id}_${day.date}`}
+                onClick={displayEditDateForm}
+              >
+                Edit Date
+              </button>
+              <button
+                className={`${day.date}_${day.id}`}
+                onClick={handleDeleteDateClick}
+              >
+                Delete Date
+              </button>
+              <form id={`${day.id}_${day.date}`} style={{ display: "none" }}>
+                <label>
+                  New Date: 
+                  <input onChange={handleEditDateFormChange} type="text" name="date" />
+                </label>
+                <br></br>
+                <button
+                  onClick={handleEditDate}
+                  type="submit"
+                >
+                  Update Date
+                </button>
+              </form>
+              {day.foods.map((food) => {
                   return (
                     <div key={food.id}>
                       <h3>
@@ -246,15 +255,15 @@ function App() {
                       </h3>
                       <button
                         className={food.id}
-                        onClick={handleDeleteFood}
+                        onClick={displayEditFoodForm}
                       >
-                        Delete Food
+                        Edit Food
                       </button>
                       <button
                         className={food.id}
-                        onClick={handleDisplayEditFoodForm}
+                        onClick={handleDeleteFood}
                       >
-                        Edit Food
+                        Delete Food
                       </button>
                       <form
                         id={food.id}
@@ -267,6 +276,7 @@ function App() {
                           <input
                             type="text"
                             name="name"
+                            className="name"
                             onChange={handleEditFoodFormChange}
                           />
                         </label>
@@ -276,6 +286,7 @@ function App() {
                           <input
                             type="number"
                             name="calories"
+                            className="calories"
                             onChange={handleEditFoodFormChange}
                           />
                         </label>
@@ -285,6 +296,7 @@ function App() {
                           <input
                             type="number"
                             name="fat"
+                            className="fat"
                             onChange={handleEditFoodFormChange}
                           />
                         </label>
@@ -294,6 +306,7 @@ function App() {
                           <input
                             type="number"
                             name="fiber"
+                            className="fiber"
                             onChange={handleEditFoodFormChange}
                           />
                         </label>
@@ -312,56 +325,12 @@ function App() {
                     </div>
                   )
                 }
-              })}
-              <form
-                id={day.id}
-                style={{ display: "none" }}
-                onSubmit={handleAddFoodFormSubmit}
-              >
-                <label>
-                  Name:
-                  <input
-                    type="text"
-                    name="name"
-                    onChange={handleAddFoodFormChange}
-                  />
-                </label>
-                <br></br>
-                <label>
-                  Calories:
-                  <input
-                    type="number"
-                    name="calories"
-                    onChange={handleAddFoodFormChange}
-                  />
-                </label>
-                <br></br>
-                <label>
-                  Fat:
-                  <input
-                    type="number"
-                    name="fat"
-                    onChange={handleAddFoodFormChange}
-                  />
-                </label>
-                <br></br>
-                <label>
-                  Fiber:
-                  <input
-                    type="number"
-                    name="fiber"
-                    onChange={handleAddFoodFormChange}
-                  />
-                </label>
-                <br></br>
-                <button>Submit Food</button>
-              </form>
-              <button
-                id="displayAddFoodForm"
-                onClick={handleDisplayAddFoodFormClick}
-              >
-                Add Food
-              </button>
+              )}
+              <AddFoodForm
+                day={day}
+                daysWithFoods={daysWithFoods}
+                onSetFoods={handleSetFoods}
+              />
             </div>
           </div>
         ))}
