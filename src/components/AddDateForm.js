@@ -15,7 +15,7 @@ function AddDateForm({
         const newDate = dateFormData
         const updatedDays = [...daysWithFoods, newDate]
     
-        fetch("http://localhost:9292/days_with_foods", {
+        fetch("http://localhost:9292/days", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

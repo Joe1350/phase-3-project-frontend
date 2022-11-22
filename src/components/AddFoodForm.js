@@ -25,7 +25,7 @@ function AddFoodForm({
             day_id: e.target.id
         }
     
-        fetch(`http://localhost:9292/days_with_foods/${e.target.id}/foods`, {
+        fetch(`http://localhost:9292/days/${e.target.id}/foods`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

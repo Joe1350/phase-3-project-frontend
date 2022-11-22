@@ -26,7 +26,7 @@ function App() {
   const [daysWithFoods, setDaysWithFoods] = useState([])
 
   useEffect(() => {
-    fetch("http://localhost:9292/days_with_foods")
+    fetch("http://localhost:9292/days")
     .then(r => r.json())
     .then(setDaysWithFoods)
   }, [])
