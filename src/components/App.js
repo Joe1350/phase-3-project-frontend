@@ -45,18 +45,6 @@ function App() {
   function handleSetFoods(updatedDays) {
     setDaysWithFoods(updatedDays)
   }
-
-  function displayEditDateForm(e) {
-    const x = document.getElementById(e.target.className)
-
-    if (x.style.display === "none") {
-      x.style.display = "block"
-      e.target.innerText = "Hide Form"
-    } else {
-      x.style.display = "none"
-      e.target.innerText = "Edit Date"
-    }
-  }
   
   function handleEditDateFormChange(e) {
     setEditDateFormData(e.target.value)
@@ -108,7 +96,6 @@ function App() {
       <AddDateForm onSetDays={handleSetDays} />
       <DateList
         daysWithFoods={daysWithFoods}
-        displayEditDateForm={displayEditDateForm}
         handleDeleteDateClick={handleDeleteDateClick}
         handleEditDateFormChange={handleEditDateFormChange}
         handleEditDateSubmit={handleEditDateSubmit}

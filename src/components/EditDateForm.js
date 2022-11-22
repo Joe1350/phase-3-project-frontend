@@ -6,14 +6,12 @@ function EditDateForm({
     handleEditDateFormChange,
     editDateFormData,
     handleEditDateSubmit,
-    displayEditDateForm,
     handleDeleteDateClick
 }) {
     return(
         <div>
             <EditAndDeleteDateButtons
                 day={day}
-                displayEditDateForm={displayEditDateForm}
                 handleDeleteDateClick={handleDeleteDateClick}
             />
             <form id={`${day.id}_${day.date}`} style={{ display: "none" }}>

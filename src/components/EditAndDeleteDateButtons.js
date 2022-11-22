@@ -2,9 +2,20 @@ import React from "react";
 
 function EditAndDeleteDateButtons({
     day,
-    displayEditDateForm,
     handleDeleteDateClick
 }) {
+    function displayEditDateForm(e) {
+        const x = document.getElementById(e.target.className)
+    
+        if (x.style.display === "none") {
+            x.style.display = "block"
+            e.target.innerText = "Hide Form"
+        } else {
+            x.style.display = "none"
+            e.target.innerText = "Edit Date"
+        }
+    }
+
     return(
         <div>
             <button

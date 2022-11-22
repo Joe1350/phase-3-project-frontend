@@ -3,7 +3,6 @@ import DateListing from "./DateListing"
 
 function DateList({
     daysWithFoods,
-    displayEditDateForm,
     handleDeleteDateClick,
     handleEditDateFormChange,
     handleEditDateSubmit,
@@ -21,7 +20,6 @@ function DateList({
             <DateListing
                 day={day}
                 daysWithFoods={daysWithFoods}
-                displayEditDateForm={displayEditDateForm}
                 handleDeleteDateClick={handleDeleteDateClick}
                 handleEditDateFormChange={handleEditDateFormChange}
                 handleEditDateSubmit={handleEditDateSubmit}
