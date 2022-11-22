@@ -17,58 +17,58 @@ function AddFoodForm({
         const x = e.target.previousSibling
     
         if (x.style.display === "none") {
-          x.style.display = "block"
-          e.target.innerText = "Hide Form"
+            x.style.display = "block"
+            e.target.innerText = "Hide Form"
         } else {
-          x.style.display = "none"
-          e.target.innerText = "Add Food"
+            x.style.display = "none"
+            e.target.innerText = "Add Food"
         }
-      }
+    }
     
-      function handleAddFoodFormChange(e) {
+    function handleAddFoodFormChange(e) {
         setAddFoodFormData({
-          ...addFoodFormData,
-          [e.target.name]: e.target.value,
+            ...addFoodFormData,
+            [e.target.name]: e.target.value,
         })
-      }
+    }
     
-      function handleAddFoodFormSubmit(e) {
+    function handleAddFoodFormSubmit(e) {
         e.preventDefault()
     
         const dayWithFood = daysWithFoods.find(day => day.id == e.target.id)
         const newFood = {
-          name: addFoodFormData.name,
-          calories: addFoodFormData.calories,
-          fat: addFoodFormData.fat,
-          fiber: addFoodFormData.fiber,
-          day_id: e.target.id
+            name: addFoodFormData.name,
+            calories: addFoodFormData.calories,
+            fat: addFoodFormData.fat,
+            fiber: addFoodFormData.fiber,
+            day_id: e.target.id
         }
     
         fetch(`http://localhost:9292/days_with_foods/${e.target.id}/foods`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(newFood),
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newFood),
         })
-        .then(r => r.json())
-        .then(() => {
-          const updatedFoods = [...dayWithFood.foods, newFood]
-          const updatedDay = {...dayWithFood, foods: updatedFoods}
-          const updatedDays = daysWithFoods.map(day => (
-            day.id == dayWithFood.id ? updatedDay : day
-          ))
-          onSetFoods(updatedDays)
+            .then(r => r.json())
+            .then(() => {
+                const updatedFoods = [...dayWithFood.foods, newFood]
+                const updatedDay = {...dayWithFood, foods: updatedFoods}
+                const updatedDays = daysWithFoods.map(day => (
+                    day.id == dayWithFood.id ? updatedDay : day
+                ))
+                onSetFoods(updatedDays)
+            })
+        setAddFoodFormData({
+            name: "",
+            calories: "",
+            fat: "",
+            fiber: "",
+            day_id: "",
         })
         e.target.style.display = "none"
         e.target.nextSibling.innerText = "Add Food"
-        setAddFoodFormData({
-          name: "",
-          calories: "",
-          fat: "",
-          fiber: "",
-          day_id: "",
-        })
     }
 
     return (

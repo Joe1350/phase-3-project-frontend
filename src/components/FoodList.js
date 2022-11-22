@@ -14,16 +14,15 @@ function FoodList({
     return (
         <div className="food-list">
             {day.foods.map(food => (
-                    <FoodListing
+                <FoodListing
                     food={food}
                     daysWithFoods={daysWithFoods}
                     setEditFoodFormData={setEditFoodFormData}
                     handleDeleteFoodSubmit={handleDeleteFoodSubmit}
                     handleEditFoodFormSubmit={handleEditFoodFormSubmit}
                     handleEditFoodFormChange={handleEditFoodFormChange}
-                    />
-                  ))
-                }
+                />
+            ))}
         </div>
     )
 }

@@ -10,15 +10,15 @@ function EditAndDeleteDateButtons({
             <button
                 className={`${day.id}_${day.date}`}
                 onClick={displayEditDateForm}
-              >
+            >
                 Edit Date
-              </button>
-              <button
+            </button>
+            <button
                 className={`${day.date}_${day.id}`}
                 onClick={handleDeleteDateClick}
-              >
+            >
                 Delete Date
-              </button>
+            </button>
         </div>
     )
 }

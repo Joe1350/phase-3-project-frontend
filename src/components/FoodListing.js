@@ -14,19 +14,19 @@ function FoodListing({
 
     return (
         <div key={food.id}>
-                      <h3>
-                        {food.name}
-                      </h3>
-                      <EditFoodForm
-                        food={food}
-                        daysWithFoods={daysWithFoods}
-                        setEditFoodFormData={setEditFoodFormData}
-                        handleEditFoodFormSubmit={handleEditFoodFormSubmit}
-                        handleEditFoodFormChange={handleEditFoodFormChange}
-                        handleDeleteFoodSubmit={handleDeleteFoodSubmit}
-                      />
-                      <FoodListingInfo food={food} />
-                    </div>
+            <h3>
+                {food.name}
+            </h3>
+            <EditFoodForm
+                food={food}
+                daysWithFoods={daysWithFoods}
+                setEditFoodFormData={setEditFoodFormData}
+                handleEditFoodFormSubmit={handleEditFoodFormSubmit}
+                handleEditFoodFormChange={handleEditFoodFormChange}
+                handleDeleteFoodSubmit={handleDeleteFoodSubmit}
+            />
+            <FoodListingInfo food={food} />
+        </div>
     )
 }
 

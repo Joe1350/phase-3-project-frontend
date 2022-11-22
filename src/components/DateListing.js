@@ -33,34 +33,34 @@ function DateListing({
     return(
         <div id="date-listing" key={day.id}>
             <h2 id="date" 
-              onClick={handleClickOnDate}
+                onClick={handleClickOnDate}
             >
-              {day.date}
+                {day.date}
             </h2>
             <div id={day.date} style={{ display: "none" }}>
-              <EditDateForm
-                day={day}
-                handleEditDateFormChange={handleEditDateFormChange}
-                handleEditDateSubmit={handleEditDateSubmit}
-                displayEditDateForm={displayEditDateForm}
-                handleDeleteDateClick={handleDeleteDateClick}
-              />
-              <FoodList
-                day={day}
-                daysWithFoods={daysWithFoods}
-                editFoodFormData={editFoodFormData}
-                setEditFoodFormData={setEditFoodFormData}
-                handleDeleteFoodSubmit={handleDeleteFoodSubmit}
-                handleEditFoodFormSubmit={handleEditFoodFormSubmit}
-                handleEditFoodFormChange={handleEditFoodFormChange}
-              />
-              <AddFoodForm
-                day={day}
-                daysWithFoods={daysWithFoods}
-                onSetFoods={handleSetFoods}
-              />
+                <EditDateForm
+                    day={day}
+                    handleEditDateFormChange={handleEditDateFormChange}
+                    handleEditDateSubmit={handleEditDateSubmit}
+                    displayEditDateForm={displayEditDateForm}
+                    handleDeleteDateClick={handleDeleteDateClick}
+                />
+                <FoodList
+                    day={day}
+                    daysWithFoods={daysWithFoods}
+                    editFoodFormData={editFoodFormData}
+                    setEditFoodFormData={setEditFoodFormData}
+                    handleDeleteFoodSubmit={handleDeleteFoodSubmit}
+                    handleEditFoodFormSubmit={handleEditFoodFormSubmit}
+                    handleEditFoodFormChange={handleEditFoodFormChange}
+                />
+                <AddFoodForm
+                    day={day}
+                    daysWithFoods={daysWithFoods}
+                    onSetFoods={handleSetFoods}
+                />
             </div>
-          </div>
+        </div>
     )
 }
 
