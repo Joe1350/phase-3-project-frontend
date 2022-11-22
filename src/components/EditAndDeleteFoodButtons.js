@@ -4,7 +4,7 @@ function EditAndDeleteFoodButtons({
   food,
   daysWithFoods,
   onSetDaysWithFoods,
-  setEditFoodFormData
+  onSetEditFoodFormData
 }) {
   function displayEditFoodFormClick(e) {
     const x = document.getElementById(e.target.className)
@@ -25,7 +25,7 @@ function EditAndDeleteFoodButtons({
       y[2].children[0].value = foodToDisplay.calories
       y[4].children[0].value = foodToDisplay.fat
       y[6].children[0].value = foodToDisplay.fiber
-      setEditFoodFormData(foodToDisplay)
+      onSetEditFoodFormData(foodToDisplay)
     } else {
       x.style.display = "none"
       e.target.innerText = "Edit Food"

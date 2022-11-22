@@ -5,8 +5,6 @@ function FoodList({
     day,
     daysWithFoods,
     onSetDaysWithFoods,
-    editFoodFormData,
-    setEditFoodFormData
 }) {
     return (
         <div className="food-list">
@@ -16,8 +14,6 @@ function FoodList({
                     food={food}
                     daysWithFoods={daysWithFoods}
                     onSetDaysWithFoods={onSetDaysWithFoods}
-                    editFoodFormData={editFoodFormData}
-                    setEditFoodFormData={setEditFoodFormData}
                 />
             ))}
         </div>

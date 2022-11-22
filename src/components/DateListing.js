@@ -5,8 +5,6 @@ import FoodList from "./FoodList";
 
 function DateListing({
     day,
-    editFoodFormData,
-    setEditFoodFormData,
     daysWithFoods,
     onSetDaysWithFoods,
 }) {
@@ -38,8 +36,6 @@ function DateListing({
                     day={day}
                     daysWithFoods={daysWithFoods}
                     onSetDaysWithFoods={onSetDaysWithFoods}
-                    editFoodFormData={editFoodFormData}
-                    setEditFoodFormData={setEditFoodFormData}
                 />
                 <AddFoodForm
                     day={day}

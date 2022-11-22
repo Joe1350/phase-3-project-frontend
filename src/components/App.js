@@ -24,12 +24,6 @@ import DateList from "./DateList";
 
 function App() {
   const [daysWithFoods, setDaysWithFoods] = useState([])
-  const [editFoodFormData, setEditFoodFormData] = useState({
-    name: "",
-    calories: "",
-    fat: "",
-    fiber: "",
-  })
 
   useEffect(() => {
     fetch("http://localhost:9292/days_with_foods")
@@ -51,8 +45,6 @@ function App() {
       <DateList
         daysWithFoods={daysWithFoods}
         onSetDaysWithFoods={handleSetDaysWithFoods}
-        editFoodFormData={editFoodFormData}
-        setEditFoodFormData={setEditFoodFormData}
       />
     </div>
   );

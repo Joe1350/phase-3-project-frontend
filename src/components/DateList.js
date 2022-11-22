@@ -4,8 +4,6 @@ import DateListing from "./DateListing"
 function DateList({
     daysWithFoods,
     onSetDaysWithFoods,
-    editFoodFormData,
-    setEditFoodFormData,
 }) {
     return(
         <div className="date-list">
@@ -16,8 +14,6 @@ function DateList({
                         day={day}
                         daysWithFoods={daysWithFoods}
                         onSetDaysWithFoods={onSetDaysWithFoods}
-                        editFoodFormData={editFoodFormData}
-                        setEditFoodFormData={setEditFoodFormData}
                     />
                 )
             })}

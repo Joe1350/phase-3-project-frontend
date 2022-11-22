@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import EditAndDeleteFoodButtons from "./EditAndDeleteFoodButtons";
 
 function EditFoodForm({
     food,
     daysWithFoods,
     onSetDaysWithFoods,
-    editFoodFormData,
-    setEditFoodFormData,
 }) {
+    const [editFoodFormData, setEditFoodFormData] = useState({
+        name: "",
+        calories: "",
+        fat: "",
+        fiber: "",
+    })
+
+    function handleSetEditFoodFormData(foodToDisplay) {
+        setEditFoodFormData(foodToDisplay)
+
+    }
+    
     function handleEditFoodFormSubmit(e) {
         e.preventDefault()
     
@@ -54,7 +64,7 @@ function EditFoodForm({
                 food={food}
                 daysWithFoods={daysWithFoods}
                 onSetDaysWithFoods={onSetDaysWithFoods}
-                setEditFoodFormData={setEditFoodFormData}
+                onSetEditFoodFormData={handleSetEditFoodFormData}
             />
             <form
                 id={food.id}
