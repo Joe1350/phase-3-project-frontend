@@ -12,18 +12,6 @@ function AddFoodForm({
         fat: "",
         fiber: "",
     })
-
-    function displayAddFoodFormClick(e) {
-        const x = e.target.previousSibling
-    
-        if (x.style.display === "none") {
-            x.style.display = "block"
-            e.target.innerText = "Hide Form"
-        } else {
-            x.style.display = "none"
-            e.target.innerText = "Add Food"
-        }
-    }
     
     function handleAddFoodFormChange(e) {
         setAddFoodFormData({
@@ -120,7 +108,7 @@ function AddFoodForm({
                 <br></br>
                 <button type="submit">Submit Food</button>
             </form>
-            <AddFoodButton displayAddFoodFormClick={displayAddFoodFormClick} />
+            <AddFoodButton />
         </div>
     )
 }
