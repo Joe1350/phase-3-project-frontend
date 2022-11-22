@@ -28,7 +28,7 @@ function App() {
   useEffect(() => {
     fetch("http://localhost:9292/days")
     .then(r => r.json())
-    .then(setDaysWithFoods)
+    .then(setDays)
   }, [])
 
   function handleSetDays(updatedDays) {

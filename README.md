@@ -10,6 +10,8 @@ In order to view this project fork and clone the repository.
 Run `npm install` to download dependencies
 Run `npm start` to start the server at port 3000
 
+The repository for the backend is : [backend](https://github.com/Joe1350/phase-3-sinatra-react-project)
+
 ## Usage
 
 The Calorie Tracker has a field to add a new day by Typing in the day and clicking add.
