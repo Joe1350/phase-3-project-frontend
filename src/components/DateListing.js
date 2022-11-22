@@ -7,7 +7,6 @@ function DateListing({
     day,
     editFoodFormData,
     daysWithFoods,
-    handleClickOnDate,
     displayEditDateForm,
     handleDeleteDateClick,
     handleEditDateFormChange,
@@ -18,6 +17,17 @@ function DateListing({
     handleEditFoodFormChange,
     handleSetFoods,
 }) {
+    function handleClickOnDate(e) {
+        const date = e.target.innerHTML
+        const x = document.getElementById(date)
+    
+        if (x.style.display === "none") {
+            x.style.display = "block"
+        } else {
+            x.style.display = "none"
+        }
+    }
+
     return(
         <div id="date-listing" key={day.id}>
             <h2 id="date" 

@@ -7,7 +7,7 @@ import DateList from "./DateList";
   // AddDateForm
   // DateList
     // DateListing
-      // <h2> (date)
+      // <h2> (date) (clickable)
       // EditDateForm
         // EditAndDeleteDateButtons
         // <form> (edit date)
@@ -37,17 +37,6 @@ function App() {
     .then(r => r.json())
     .then(setDaysWithFoods)
   }, [])
-
-  function handleClickOnDate(e) {
-    const date = e.target.innerHTML
-    const x = document.getElementById(date)
-
-    if (x.style.display === "none") {
-      x.style.display = "block"
-    } else {
-      x.style.display = "none"
-    }
-  }
 
   function handleSetDays(newDate) {
     setDaysWithFoods([...daysWithFoods, newDate])
@@ -216,7 +205,6 @@ function App() {
       <AddDateForm onSetDays={handleSetDays} />
       <DateList
         daysWithFoods={daysWithFoods}
-        handleClickOnDate={handleClickOnDate}
         displayEditDateForm={displayEditDateForm}
         handleDeleteDateClick={handleDeleteDateClick}
         handleEditDateFormChange={handleEditDateFormChange}
