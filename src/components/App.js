@@ -46,27 +46,12 @@ function App() {
     setDaysWithFoods(updatedDays)
   }
 
-  function handleDeleteDateClick(e) {
-    const dayId = e.target.className.split("_")[1]
-    const updatedDays = daysWithFoods.filter(day => (
-      day.id == dayId ? null : day
-    ))
-    console.log(updatedDays)
-
-    fetch(`http://localhost:9292/days/${dayId}`, {
-      method: "DELETE",
-    })
-    .then(r => r.json())
-    .then(() => handleSetFoods(updatedDays))
-  }
-
   return (
     <div>
       <h1>Calorie Tracker</h1>
       <AddDateForm onSetDays={handleSetDays} />
       <DateList
         daysWithFoods={daysWithFoods}
-        handleDeleteDateClick={handleDeleteDateClick}
         handleSetFoods={handleSetFoods}
         editFoodFormData={editFoodFormData}
         setEditFoodFormData={setEditFoodFormData}

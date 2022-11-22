@@ -2,7 +2,8 @@ import React from "react";
 
 function EditAndDeleteDateButtons({
     day,
-    handleDeleteDateClick
+    daysWithFoods,
+    handleSetFoods
 }) {
     function displayEditDateForm(e) {
         const x = document.getElementById(e.target.className)
@@ -14,6 +15,19 @@ function EditAndDeleteDateButtons({
             x.style.display = "none"
             e.target.innerText = "Edit Date"
         }
+    }
+
+    function handleDeleteDateClick(e) {
+        const dayId = e.target.className.split("_")[1]
+        const updatedDays = daysWithFoods.filter(day => (
+            day.id == dayId ? null : day
+        ))
+    
+        fetch(`http://localhost:9292/days/${dayId}`, {
+            method: "DELETE",
+        })
+            .then(r => r.json())
+            .then(() => handleSetFoods(updatedDays))
     }
 
     return(

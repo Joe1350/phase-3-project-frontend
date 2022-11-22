@@ -6,8 +6,7 @@ function EditDateForm({
     daysWithFoods,
     handleSetFoods,
     editDateFormData,
-    setEditDateFormData,
-    handleDeleteDateClick
+    setEditDateFormData
 }) {
     function handleEditDateFormChange(e) {
         setEditDateFormData(e.target.value)
@@ -42,7 +41,8 @@ function EditDateForm({
         <div>
             <EditAndDeleteDateButtons
                 day={day}
-                handleDeleteDateClick={handleDeleteDateClick}
+                daysWithFoods={daysWithFoods}
+                handleSetFoods={handleSetFoods}
             />
             <form id={`${day.id}_${day.date}`} style={{ display: "none" }}>
                 <label>
