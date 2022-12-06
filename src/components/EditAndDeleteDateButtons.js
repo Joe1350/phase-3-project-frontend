@@ -7,10 +7,12 @@ function EditAndDeleteDateButtons({
 }) {
     function displayEditDateFormClick(e) {
         const x = document.getElementById(e.target.className)
+        const y = x.children
     
         if (x.style.display === "none") {
             x.style.display = "block"
             e.target.innerText = "Hide Form"
+            y[0].children[0].value = day.date
         } else {
             x.style.display = "none"
             e.target.innerText = "Edit Date"

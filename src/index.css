@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#date-details-button {
+  margin-left: 1%;
+  position: relative;
+  top: -3px
+}
