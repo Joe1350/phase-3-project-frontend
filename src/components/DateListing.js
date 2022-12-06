@@ -9,7 +9,7 @@ function DateListing({
     onSetDays,
 }) {
     function handleClickOnDate(e) {
-        const date = e.target.innerHTML
+        const date = e.target.parentElement.innerHTML.split("<")[0]
         const x = document.getElementById(date)
     
         if (x.style.display === "none") {
@@ -22,9 +22,10 @@ function DateListing({
     return(
         <div id="date-listing">
             <h2 id="date" 
-                onClick={handleClickOnDate}
+                // onClick={handleClickOnDate}
             >
                 {day.date}
+                <button id="date-details-button" onClick={handleClickOnDate}>see more info</button>
             </h2>
             <div id={day.date} style={{ display: "none" }}>
                 <EditDateForm

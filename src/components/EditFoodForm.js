@@ -15,7 +15,6 @@ function EditFoodForm({
 
     function handleSetEditFoodFormData(foodToDisplay) {
         setEditFoodFormData(foodToDisplay)
-
     }
     
     function handleEditFoodFormSubmit(e) {
