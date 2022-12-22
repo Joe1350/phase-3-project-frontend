@@ -4,24 +4,18 @@ import AddFoodButton from "./AddFoodButton";
 function AddFoodForm({ day, days, onSetDays }) {
     const [addFoodFormData, setAddFoodFormData] = useState({
         name: "",
-        category: "",
+        calories: "",
         fat: "",
         fiber: "",
+        day_id: day.id,
     })
     
     function handleAddFoodFormSubmit(e) {
         e.preventDefault()
     
-        const dayWithFood = days.find(day => day.id == e.target.id)
-        const newFood = {
-            name: addFoodFormData.name,
-            calories: addFoodFormData.calories,
-            fat: addFoodFormData.fat,
-            fiber: addFoodFormData.fiber,
-            day_id: e.target.id
-        }
+        const newFood = addFoodFormData
     
-        fetch(`http://localhost:9292/days/${e.target.id}/foods`, {
+        fetch(`http://localhost:9292/days/${day.id}/foods`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -29,12 +23,8 @@ function AddFoodForm({ day, days, onSetDays }) {
             body: JSON.stringify(newFood),
         })
             .then(r => r.json())
-            .then(() => {
-                const updatedFoods = [...dayWithFood.foods, newFood]
-                const updatedDay = {...dayWithFood, foods: updatedFoods}
-                const updatedDays = days.map(day => (
-                    day.id == dayWithFood.id ? updatedDay : day
-                ))
+            .then(newDay => {
+                const updatedDays = days.map(d => d.id === day.id ? newDay : d)
                 onSetDays(updatedDays)
             })
         setAddFoodFormData({

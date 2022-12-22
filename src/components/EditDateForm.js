@@ -15,13 +15,12 @@ function EditDateForm({
     function handleEditDateSubmit(e) {
         e.preventDefault()
     
-        const dayId = e.target.form.id.split("_")[0]
         const updatedDate = editDateFormData
-        const updatedDays = days.map(day => (
-            day.id == dayId ? {...day, date: updatedDate} : day
+        const updatedDays = days.map(d => (
+            d.id === day.id ? {...d, date: updatedDate} : d
         ))
     
-        fetch(`http://localhost:9292/days/${dayId}`, {
+        fetch(`http://localhost:9292/days/${day.id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -44,7 +43,7 @@ function EditDateForm({
                 days={days}
                 onSetDays={onSetDays}
             />
-            <form id={`${day.id}_${day.date}`} style={{ display: "none" }}>
+            <form style={{ display: "none" }}>
                 <label>
                     New Date: 
                     <input

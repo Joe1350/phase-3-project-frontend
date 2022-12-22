@@ -12,6 +12,7 @@ function FoodList({
                 <FoodListing
                     key={food.id}
                     food={food}
+                    day={day}
                     days={days}
                     onSetDays={onSetDays}
                 />

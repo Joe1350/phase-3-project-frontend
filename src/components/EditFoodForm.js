@@ -3,6 +3,7 @@ import EditAndDeleteFoodButtons from "./EditAndDeleteFoodButtons";
 
 function EditFoodForm({
     food,
+    day,
     days,
     onSetDays,
 }) {
@@ -20,25 +21,15 @@ function EditFoodForm({
     function handleEditFoodFormSubmit(e) {
         e.preventDefault()
     
-        const dayWithFoodToEdit = days.find(
-            day => day.foods.find(food => food.id == e.target.id)
-        )
         const updatedFood = {
             name: editFoodFormData.name,
             calories: editFoodFormData.calories,
             fat: editFoodFormData.fat,
             fiber: editFoodFormData.fiber,
-            day_id: dayWithFoodToEdit.id
+            day_id: day.id
         }
-        const updatedFoods = dayWithFoodToEdit.foods.map(food => (
-            food.id == e.target.id ? updatedFood : food
-        ))
-        const updatedDay = {...dayWithFoodToEdit, foods: updatedFoods}
-        const updatedDays = days.map(day => (
-            day.id == dayWithFoodToEdit.id ? updatedDay : day
-        ))
     
-        fetch(`http://localhost:9292/foods/${e.target.id}`, {
+        fetch(`http://localhost:9292/foods/${food.id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -46,7 +37,16 @@ function EditFoodForm({
             body: JSON.stringify(updatedFood),
         })
             .then(r => r.json())
-            .then(() => onSetDays(updatedDays))
+            .then(updatedFood => {
+                const updatedFoods = day.foods.map(f => (
+                    f.id == food.id ? updatedFood : f
+                ))
+                const updatedDay = {...day, foods: updatedFoods}
+                const updatedDays = days.map(d => (
+                    d.id == day.id ? updatedDay : d
+                ))
+                onSetDays(updatedDays)
+            })
         e.target.style.display = "none"
     }
 
@@ -61,6 +61,7 @@ function EditFoodForm({
         <div>
             <EditAndDeleteFoodButtons
                 food={food}
+                day={day}
                 days={days}
                 onSetDays={onSetDays}
                 onSetEditFoodFormData={handleSetEditFoodFormData}

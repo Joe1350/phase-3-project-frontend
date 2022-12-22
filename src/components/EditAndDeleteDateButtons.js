@@ -5,8 +5,9 @@ function EditAndDeleteDateButtons({
     days,
     onSetDays
 }) {
+
     function displayEditDateFormClick(e) {
-        const x = document.getElementById(e.target.className)
+        const x = e.target.parentElement.parentElement.children[1]
         const y = x.children
     
         if (x.style.display === "none") {
@@ -19,29 +20,25 @@ function EditAndDeleteDateButtons({
         }
     }
 
-    function handleDeleteDateClick(e) {
-        const dayId = e.target.className.split("_")[1]
-        const updatedDays = days.filter(day => (
-            day.id == dayId ? null : day
-        ))
-    
-        fetch(`http://localhost:9292/days/${dayId}`, {
+    function handleDeleteDateClick() {
+        fetch(`http://localhost:9292/days/${day.id}`, {
             method: "DELETE",
         })
             .then(r => r.json())
-            .then(() => onSetDays(updatedDays))
+            .then(() => {
+                const updatedDays = days.filter(d => day.id !== d.id)
+                onSetDays(updatedDays)
+            })
     }
 
     return(
         <div>
             <button
-                className={`${day.id}_${day.date}`}
                 onClick={displayEditDateFormClick}
             >
                 Edit Date
             </button>
             <button
-                className={`${day.date}_${day.id}`}
                 onClick={handleDeleteDateClick}
             >
                 Delete Date

@@ -13,7 +13,6 @@ function AddDateForm({
         e.preventDefault()
     
         const newDate = dateFormData
-        const updatedDays = [...days, newDate]
     
         fetch("http://localhost:9292/days", {
             method: "POST",
@@ -23,7 +22,10 @@ function AddDateForm({
             body: JSON.stringify(newDate),
         })
             .then(r => r.json())
-            .then(() => onSetDays(updatedDays))
+            .then(newDay => {
+                const updatedDays = [...days, newDay]
+                onSetDays(updatedDays)
+            })
         setDateFormData({...dateFormData, date: ""})
     }
 

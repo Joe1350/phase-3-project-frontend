@@ -2,30 +2,23 @@ import React from "react";
 
 function EditAndDeleteFoodButtons({
   food,
+  day,
   days,
   onSetDays,
   onSetEditFoodFormData
 }) {
   function displayEditFoodFormClick(e) {
-    const x = document.getElementById(e.target.className)
+    const x = e.target.parentElement.parentElement.children[1]
     const y = x.children
-    const dayWithFoodToDisplay = days.find(day => (
-      day.foods.find(food => (
-        food.id == e.target.className
-      ))
-    ))
-    const foodToDisplay = dayWithFoodToDisplay.foods.find(food => (
-      food.id == e.target.className
-    ))
 
     if (x.style.display === "none") {
       x.style.display = "block"
       e.target.innerText = "Hide Form"
-      y[0].children[0].value = `${foodToDisplay.name}`
-      y[2].children[0].value = foodToDisplay.calories
-      y[4].children[0].value = foodToDisplay.fat
-      y[6].children[0].value = foodToDisplay.fiber
-      onSetEditFoodFormData(foodToDisplay)
+      y[0].children[0].value = `${food.name}`
+      y[2].children[0].value = food.calories
+      y[4].children[0].value = food.fat
+      y[6].children[0].value = food.fiber
+      onSetEditFoodFormData(food)
     } else {
       x.style.display = "none"
       e.target.innerText = "Edit Food"
@@ -33,16 +26,9 @@ function EditAndDeleteFoodButtons({
   }
 
   function handleDeleteFoodSubmit(e) {
-    const dayWithFoodToDelete = days.find(
-      day => day.foods.find(food => food.id == e.target.className)
-    )
-    const updatedFoods = dayWithFoodToDelete.foods.filter(food => (
-      food.id == e.target.className ? null : food
-    ))
-    const updatedDay = {...dayWithFoodToDelete, foods: updatedFoods}
-    const updatedDays = days.map(day => (
-      day.id == dayWithFoodToDelete.id ? updatedDay : day
-    ))
+    const updatedFoods = day.foods.filter(f => f.id == food.id ? null : f)
+    const updatedDay = {...day, foods: updatedFoods}
+    const updatedDays = days.map(d => d.id == day.id ? updatedDay : d)
 
     fetch(`http://localhost:9292/foods/${e.target.className}`, {
       method: "DELETE",
